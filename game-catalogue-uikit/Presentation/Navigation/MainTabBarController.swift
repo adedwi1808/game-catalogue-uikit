@@ -37,9 +37,10 @@ class MainTabBarController: UITabBarController {
     }
     
     private func createAboutNavigation() -> UINavigationController {
-        let profileVC = AboutViewController()
+        let aboutViewModel: AboutViewModel = AboutViewModel()
+        let aboutViewController = AboutViewController(viewModel: aboutViewModel)
         
-        let nav = UINavigationController(rootViewController: profileVC)
+        let nav = UINavigationController(rootViewController: aboutViewController)
         nav.tabBarItem = UITabBarItem(
             title: "About",
             image: UIImage(systemName: "person"),
@@ -49,9 +50,10 @@ class MainTabBarController: UITabBarController {
     }
     
     private func createFavoriteNavigation() -> UINavigationController {
-        let profileVC = FavoriteViewController()
+        let favoriteViewModel: FavoriteViewModel = FavoriteViewModel()
+        let favoriteViewController = FavoriteViewController(viewModel: favoriteViewModel)
         
-        let nav = UINavigationController(rootViewController: profileVC)
+        let nav = UINavigationController(rootViewController: favoriteViewController)
         nav.tabBarItem = UITabBarItem(
             title: "Favorite",
             image: UIImage(systemName: "heart"),
