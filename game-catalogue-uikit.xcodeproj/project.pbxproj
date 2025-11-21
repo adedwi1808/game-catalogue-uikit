@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AD2262782ED015C900DD53BD /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AD2262772ED015C900DD53BD /* Kingfisher */; };
+		AD22627B2ED0160000DD53BD /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = AD22627A2ED0160000DD53BD /* SkeletonView */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		ADC4FBD12ECEB76D0040C6BB /* game-catalogue-uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "game-catalogue-uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD22627B2ED0160000DD53BD /* SkeletonView in Frameworks */,
+				AD2262782ED015C900DD53BD /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = "game-catalogue-uikit";
 			packageProductDependencies = (
+				AD2262772ED015C900DD53BD /* Kingfisher */,
+				AD22627A2ED0160000DD53BD /* SkeletonView */,
 			);
 			productName = "game-catalogue-uikit";
 			productReference = ADC4FBD12ECEB76D0040C6BB /* game-catalogue-uikit.app */;
@@ -107,6 +116,10 @@
 			);
 			mainGroup = ADC4FBC82ECEB76D0040C6BB;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AD2262762ED015C900DD53BD /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				AD2262792ED0160000DD53BD /* XCRemoteSwiftPackageReference "SkeletonView" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ADC4FBD22ECEB76D0040C6BB /* Products */;
 			projectDirPath = "";
@@ -345,6 +358,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AD2262762ED015C900DD53BD /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.2;
+			};
+		};
+		AD2262792ED0160000DD53BD /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.31.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AD2262772ED015C900DD53BD /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD2262762ED015C900DD53BD /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		AD22627A2ED0160000DD53BD /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD2262792ED0160000DD53BD /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ADC4FBC92ECEB76D0040C6BB /* Project object */;
 }
