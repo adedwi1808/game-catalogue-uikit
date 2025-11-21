@@ -9,16 +9,74 @@ import UIKit
 
 class GameDetailDescriptionTableViewCell: UITableViewCell {
     static let name: String = String(describing: GameDetailDescriptionTableViewCell.self)
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    private let containerView: UIView = UIView()
+    
+    private let labelLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .lightGray
+        label.text = "Description:"
+        return label
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.numberOfLines = 0
+        label.textAlignment = .justified
+        return label
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
     }
-
+    
+    
+    private func setupView() {
+        selectionStyle = .none
+        contentView.addSubview(containerView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
+        [labelLabel, descriptionLabel].forEach {
+            containerView.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        NSLayoutConstraint.activate([
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            labelLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            labelLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            labelLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+        ])
+        
+        NSLayoutConstraint.activate([
+            descriptionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            descriptionLabel.topAnchor.constraint(equalTo: labelLabel.bottomAnchor, constant: 10),
+            descriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            descriptionLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+        ])
+    }
+    
+    func configure(data: Game) {
+        descriptionLabel.text = """
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    """
+    }
 }

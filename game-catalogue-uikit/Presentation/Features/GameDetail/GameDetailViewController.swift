@@ -108,6 +108,7 @@ extension GameDetailViewController: UITableViewDataSource {
             ) as? GameDetailDescriptionTableViewCell else {
                 return UITableViewCell()
             }
+            cell.configure(data: viewModel.data)
             return cell
             
         default:
@@ -129,5 +130,4 @@ extension GameDetailViewController: UITableViewDelegate {
             return 44
         }
     }
-
 }
