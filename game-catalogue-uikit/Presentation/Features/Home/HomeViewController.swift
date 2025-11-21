@@ -144,7 +144,10 @@ extension HomeViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        print("Click at: \(indexPath.row)")
+        let viewModel: GameDetailViewModel = GameDetailViewModel()
+        let gameDetailViewController: GameDetailViewController = GameDetailViewController(viewModel: viewModel)
+        gameDetailViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(gameDetailViewController, animated: true)
     }
 }
 
