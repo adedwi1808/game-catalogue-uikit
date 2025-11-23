@@ -25,7 +25,7 @@ class GameDetailRatingSectionView: UIView {
     private let numberOfVoteLabel: UILabel = {
         let label: UILabel = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .systemGray2
+        label.textColor = .gray
         label.textAlignment = .center
         return label
     }()
@@ -96,7 +96,7 @@ class GameDetailRatingSectionView: UIView {
             let icon = UIImageView(image: UIImage(systemName: "star.fill"))
             icon.contentMode = .scaleAspectFit
             icon.translatesAutoresizingMaskIntoConstraints = false
-            icon.tintColor = index <= numberOfStarFilled ? .tangerineYellow : .systemGray2
+            icon.tintColor = index <= numberOfStarFilled ? .tangerineYellow : .gray
             
             NSLayoutConstraint.activate([
                 icon.widthAnchor.constraint(equalToConstant: 14),

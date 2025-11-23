@@ -12,8 +12,12 @@ class GameDetailRatingTableViewCell: UITableViewCell {
     
     private let containerView: UIView = UIView()
     private let ratingSectionView: GameDetailRatingSectionView = GameDetailRatingSectionView()
-    private let favoriteSectionView: UIView = UIView()
-    private let dividerView: UIView = UIView()
+    private let favoriteSectionView: GameDetailFavoriteSectionView = GameDetailFavoriteSectionView()
+    private let dividerView: UIView = {
+        let view: UIView = UIView()
+        view.backgroundColor = .systemGray2
+        return view
+    }()
     
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -34,6 +38,10 @@ class GameDetailRatingTableViewCell: UITableViewCell {
         setupConstraint()
         
         ratingSectionView.configure(rating: 4.42, numberOfVote: 999)
+        
+        favoriteSectionView.onTap = {
+            print("Click: Favorite")
+        }
     }
     
     private func setupConstraint() {
@@ -56,7 +64,6 @@ class GameDetailRatingTableViewCell: UITableViewCell {
             ratingSectionView.widthAnchor.constraint(equalToConstant: UIScreen.screenWidth / 2 - 4),
         ])
         
-        dividerView.backgroundColor = .systemGray2
         NSLayoutConstraint.activate([
             dividerView.leadingAnchor.constraint(equalTo: ratingSectionView.trailingAnchor),
             dividerView.topAnchor.constraint(equalTo: containerView.topAnchor),
@@ -64,7 +71,6 @@ class GameDetailRatingTableViewCell: UITableViewCell {
             dividerView.widthAnchor.constraint(equalToConstant: 4)
         ])
         
-        favoriteSectionView.backgroundColor = .red
         NSLayoutConstraint.activate([
             favoriteSectionView.leadingAnchor.constraint(equalTo: dividerView.trailingAnchor),
             favoriteSectionView.topAnchor.constraint(equalTo: containerView.topAnchor),
