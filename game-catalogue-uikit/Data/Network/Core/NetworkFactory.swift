@@ -10,6 +10,7 @@ import Foundation
 
 enum NetworkFactory {
     case getGames(search: String, page: Int, pageSize: Int)
+    case getGameDetail(id: Int)
 }
 
 extension NetworkFactory {
@@ -19,6 +20,8 @@ extension NetworkFactory {
         switch self {
         case .getGames:
             return "/api/games"
+        case .getGameDetail(let id):
+            return "/api/games/\(id)"
         }
     }
     
@@ -52,7 +55,7 @@ extension NetworkFactory {
     }
     
     var apiKey: URLQueryItem {
-        URLQueryItem(name: "key", value: "")
+        URLQueryItem(name: "key", value: "f8650f5faac44c1298c39e821be80727")
     }
     
     // MARK: URL LINK
@@ -101,7 +104,7 @@ extension NetworkFactory {
     // MARK: HEADER API
     var headers: [String: String]? {
         switch self {
-        case .getGames:
+        case .getGames, .getGameDetail:
             return getHeaders(type: .anonymous)
         }
     }

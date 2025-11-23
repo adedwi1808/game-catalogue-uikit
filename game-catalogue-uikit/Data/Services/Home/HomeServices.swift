@@ -17,4 +17,8 @@ final class HomeServices: HomeServicesProtocol {
     func getGames(endPoint: NetworkFactory) async throws -> PaginationResponseModel<GamesResponse> {
         try await networker.taskAsync(type: PaginationResponseModel<GamesResponse>.self, endPoint: endPoint, isMultipart: false)
     }
+    
+    func makeGameDetailServices() -> GameDetailServicesProtocol {
+        return GameDetailServices(networker: self.networker)
+    }
 }

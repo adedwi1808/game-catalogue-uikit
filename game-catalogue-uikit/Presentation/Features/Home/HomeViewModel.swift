@@ -19,8 +19,6 @@ final class HomeViewModel {
     private var pageSize: Int = 10
     
     var games: [Game] = []
-    
-    var isLoading: Bool = false
     weak var delegate: HomeViewModelProtocol? = nil
     
     private let services: HomeServicesProtocol
@@ -30,11 +28,6 @@ final class HomeViewModel {
     }
     
     func getGames() async {
-        isLoading = true
-        defer {
-            isLoading = false
-        }
-        
         do {
             let response = try await services.getGames(endPoint: .getGames(search: query, page: page, pageSize: pageSize))
             let newGames: [Game] = response.results?.toDomain() ?? []
@@ -46,5 +39,14 @@ final class HomeViewModel {
                 delegate?.onFailed(message: error.localizedDescription)
             }
         }
+    }
+    
+    func createDetailViewModel(for index: Int) -> GameDetailViewModel {
+        let selectedGame = games[index]
+        let detailServices = services.makeGameDetailServices()
+        let detailViewModel = GameDetailViewModel(services: detailServices)
+        detailViewModel.configureDataFromList(data: selectedGame)
+        
+        return detailViewModel
     }
 }

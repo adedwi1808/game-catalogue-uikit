@@ -32,7 +32,7 @@ struct GamesResponse: Codable {
         case parentPlatforms = "parent_platforms"
         case ratingCount = "ratings_count"
         case genres
-        case description
+        case description = "description_raw"
         case added
     }
 }

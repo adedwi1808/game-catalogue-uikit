@@ -144,11 +144,8 @@ extension HomeViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        let data: Game = viewModel.games[indexPath.row]
-        let viewModel: GameDetailViewModel = GameDetailViewModel()
-        viewModel.configureDataFromList(data: data)
-        
-        let gameDetailViewController: GameDetailViewController = GameDetailViewController(viewModel: viewModel)
+        let detailViewModel = viewModel.createDetailViewModel(for: indexPath.row)
+        let gameDetailViewController = GameDetailViewController(viewModel: detailViewModel)
         gameDetailViewController.hidesBottomBarWhenPushed = true
         
         navigationController?.pushViewController(gameDetailViewController, animated: true)
@@ -183,6 +180,14 @@ extension HomeViewController: HomeViewModelProtocol {
     }
     
     func onFailed(message: String) {
+        let alertController = UIAlertController(
+            title: "Failed to fetch data",
+            message: message,
+            preferredStyle: .alert
+        )
         
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        present(alertController, animated: true)
     }
 }

@@ -24,17 +24,20 @@ class GameDetailViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        self.viewModel = GameDetailViewModel()
-        super.init(coder: coder)
+        fatalError("Use init(viewModel:) instead")
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         
         setupNavigationBar()
         setupView()
+        
+        fetchGameDetail()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -70,6 +73,12 @@ class GameDetailViewController: UIViewController {
         ])
     }
     
+    
+    private func fetchGameDetail() {
+        Task {
+            await viewModel.getGameDetail()
+        }
+    }
 }
 
 extension GameDetailViewController: UITableViewDataSource {
@@ -123,7 +132,7 @@ extension GameDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch PageSection(rawValue: indexPath.section) {
         case .header:
-            return 340
+            return 350
         case .rating:
             return 80
         case .description:
@@ -131,5 +140,23 @@ extension GameDetailViewController: UITableViewDelegate {
         default:
             return 44
         }
+    }
+}
+
+extension GameDetailViewController: GameDetailViewModelProtocol {
+    func onSuccess() {
+        tableView.reloadData()
+    }
+    
+    func onFailed(message: String) {
+        let alertController = UIAlertController(
+            title: "Failed to fetch data",
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        present(alertController, animated: true)
     }
 }

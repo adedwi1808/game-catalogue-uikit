@@ -10,4 +10,5 @@ import Foundation
 protocol HomeServicesProtocol: AnyObject {
     var networker: NetworkerProtocol { get }
     func getGames(endPoint: NetworkFactory) async throws -> PaginationResponseModel<GamesResponse>
+    func makeGameDetailServices() -> GameDetailServicesProtocol
 }
