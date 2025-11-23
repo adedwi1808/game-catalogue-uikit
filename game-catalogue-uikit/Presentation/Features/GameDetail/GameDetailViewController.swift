@@ -109,7 +109,10 @@ extension GameDetailViewController: UITableViewDataSource {
             ) as? GameDetailRatingTableViewCell else {
                 return UITableViewCell()
             }
-            cell.configure(data: viewModel.data)
+            cell.configure(data: viewModel.data, isFavorited: viewModel.isFavorited) { [weak self] in
+                guard let self else { return }
+                viewModel.toggleFavorite()
+            }
             return cell
             
         case .description:

@@ -109,15 +109,15 @@ class GameDetailFavoriteSectionView: UIView {
         onTap?()
     }
     
-    func configure(data: Game?, isAdded: Bool = false) {
+    func configure(data: Game?, isFavorited: Bool, onFavoriteTapped: (() -> Void)?) {
         guard let data else { return }
         var numberOfPeopleAdd: Int = data.added ?? 0
-        if isAdded {
+        if isFavorited {
             numberOfPeopleAdd += 1
         }
+        onTap = onFavoriteTapped
         numberOfPeopleFavoriteLabel.text = "\(numberOfPeopleAdd) Orang"
-        
-        heartImageView.tintColor = isAdded ? .systemPink : .gray
+        heartImageView.tintColor = isFavorited ? .systemPink : .gray
         self.layoutIfNeeded()
     }
 }

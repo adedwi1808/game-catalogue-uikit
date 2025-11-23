@@ -9,7 +9,23 @@
 /* Begin PBXBuildFile section */
 		AD2262782ED015C900DD53BD /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AD2262772ED015C900DD53BD /* Kingfisher */; };
 		AD22627B2ED0160000DD53BD /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = AD22627A2ED0160000DD53BD /* SkeletonView */; };
+		AD9215CF2ED2E0F300858EBD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AD9215CE2ED2E0F300858EBD /* RealmSwift */; };
+		AD9215D02ED2E16B00858EBD /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = AD9215CE2ED2E0F300858EBD /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AD9215D12ED2E16B00858EBD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AD9215D02ED2E16B00858EBD /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		ADC4FBD12ECEB76D0040C6BB /* game-catalogue-uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "game-catalogue-uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD9215CF2ED2E0F300858EBD /* RealmSwift in Frameworks */,
 				AD22627B2ED0160000DD53BD /* SkeletonView in Frameworks */,
 				AD2262782ED015C900DD53BD /* Kingfisher in Frameworks */,
 			);
@@ -75,6 +92,7 @@
 				ADC4FBCD2ECEB76D0040C6BB /* Sources */,
 				ADC4FBCE2ECEB76D0040C6BB /* Frameworks */,
 				ADC4FBCF2ECEB76D0040C6BB /* Resources */,
+				AD9215D12ED2E16B00858EBD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -87,6 +105,7 @@
 			packageProductDependencies = (
 				AD2262772ED015C900DD53BD /* Kingfisher */,
 				AD22627A2ED0160000DD53BD /* SkeletonView */,
+				AD9215CE2ED2E0F300858EBD /* RealmSwift */,
 			);
 			productName = "game-catalogue-uikit";
 			productReference = ADC4FBD12ECEB76D0040C6BB /* game-catalogue-uikit.app */;
@@ -119,6 +138,7 @@
 			packageReferences = (
 				AD2262762ED015C900DD53BD /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				AD2262792ED0160000DD53BD /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				AD9215CD2ED2E0F300858EBD /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ADC4FBD22ECEB76D0040C6BB /* Products */;
@@ -376,6 +396,14 @@
 				minimumVersion = 1.31.0;
 			};
 		};
+		AD9215CD2ED2E0F300858EBD /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -388,6 +416,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AD2262792ED0160000DD53BD /* XCRemoteSwiftPackageReference "SkeletonView" */;
 			productName = SkeletonView;
+		};
+		AD9215CE2ED2E0F300858EBD /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD9215CD2ED2E0F300858EBD /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

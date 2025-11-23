@@ -18,7 +18,6 @@ class GameDetailRatingTableViewCell: UITableViewCell {
         view.backgroundColor = .systemGray2
         return view
     }()
-    
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,10 +35,6 @@ class GameDetailRatingTableViewCell: UITableViewCell {
         contentView.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         setupConstraint()
-        
-        favoriteSectionView.onTap = {
-            print("Click: Favorite")
-        }
     }
     
     private func setupConstraint() {
@@ -77,10 +72,10 @@ class GameDetailRatingTableViewCell: UITableViewCell {
         ])
     }
     
-    func configure(data: Game?) {
+    func configure(data: Game?, isFavorited: Bool, onFavoriteTapped: (() -> Void)?) {
         guard let data else { return }
         ratingSectionView.configure(rating: data.rating ?? 0.0, numberOfVote: data.ratingCount ?? 0)
-        favoriteSectionView.configure(data: data, isAdded: true)
+        favoriteSectionView.configure(data: data, isFavorited: isFavorited, onFavoriteTapped: onFavoriteTapped)
     }
     
 }

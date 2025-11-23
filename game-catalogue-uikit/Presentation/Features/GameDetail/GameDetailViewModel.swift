@@ -15,6 +15,7 @@ protocol GameDetailViewModelProtocol: AnyObject {
 @MainActor
 final class GameDetailViewModel {
     var data: Game? = nil
+    var isFavorited: Bool = false
     
     weak var delegate: GameDetailViewModelProtocol? = nil
     
@@ -26,6 +27,7 @@ final class GameDetailViewModel {
     
     func configureDataFromList(data: Game) {
         self.data = data
+        checkIsFavorite()
     }
     
     func getGameDetail() async {
@@ -37,6 +39,28 @@ final class GameDetailViewModel {
             delegate?.onSuccess()
         } catch let error {
             delegate?.onFailed(message: error.localizedDescription)
+        }
+    }
+    
+    func checkIsFavorite() {
+        guard let id = data?.id else { return }
+        Task {
+            isFavorited =  await services.checkIsFavorite(id: id)
+            delegate?.onSuccess()
+        }
+    }
+    
+    func toggleFavorite() {
+        guard let data else { return }
+        Task {
+            if isFavorited {
+                try? await services.removeFromFavorite(game: data)
+            } else {
+                try? await services.saveToFavorite(game: data)
+            }
+            
+            isFavorited.toggle()
+            delegate?.onSuccess()
         }
     }
 }
