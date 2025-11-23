@@ -9,7 +9,7 @@
 import Foundation
 
 enum NetworkFactory {
-    case getGames
+    case getGames(search: String, page: Int, pageSize: Int)
 }
 
 extension NetworkFactory {
@@ -25,6 +25,12 @@ extension NetworkFactory {
     // MARK: URL QUERY PARAMS / URL PARAMS
     var queryItems: [URLQueryItem] {
         switch self {
+        case .getGames(let search, let page, let pageSize):
+            return [
+                URLQueryItem(name: "search", value: search),
+                URLQueryItem(name: "page", value: String(page)),
+                URLQueryItem(name: "page_size", value: String(pageSize)),
+            ]
         default:
             return []
         }

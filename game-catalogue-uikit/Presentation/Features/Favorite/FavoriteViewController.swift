@@ -29,12 +29,6 @@ class FavoriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
-            guard let self else { return }
-            viewModel.games = dummyGames
-            tableView.reloadData()
-        }
     }
     
     private func setupView() {

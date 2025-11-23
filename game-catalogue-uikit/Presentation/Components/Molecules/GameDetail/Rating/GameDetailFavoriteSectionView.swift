@@ -48,7 +48,6 @@ class GameDetailFavoriteSectionView: UIView {
     
     
     private func setupView() {
-        numberOfPeopleFavoriteLabel.text = "2396 Orang"
         self.addSubview(containerButton)
         containerButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -108,5 +107,17 @@ class GameDetailFavoriteSectionView: UIView {
     
     @objc private func didTap() {
         onTap?()
+    }
+    
+    func configure(data: Game?, isAdded: Bool = false) {
+        guard let data else { return }
+        var numberOfPeopleAdd: Int = data.added ?? 0
+        if isAdded {
+            numberOfPeopleAdd += 1
+        }
+        numberOfPeopleFavoriteLabel.text = "\(numberOfPeopleAdd) Orang"
+        
+        heartImageView.tintColor = isAdded ? .systemPink : .gray
+        self.layoutIfNeeded()
     }
 }

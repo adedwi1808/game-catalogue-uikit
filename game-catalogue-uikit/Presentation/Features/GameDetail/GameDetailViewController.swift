@@ -100,6 +100,7 @@ extension GameDetailViewController: UITableViewDataSource {
             ) as? GameDetailRatingTableViewCell else {
                 return UITableViewCell()
             }
+            cell.configure(data: viewModel.data)
             return cell
             
         case .description:
@@ -122,7 +123,7 @@ extension GameDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch PageSection(rawValue: indexPath.section) {
         case .header:
-            return 314
+            return 340
         case .rating:
             return 80
         case .description:

@@ -32,16 +32,11 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         setupView()
         
         showShimmer()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
-            guard let self else { return }
-            viewModel.games = dummyGames
-            tableView.hideSkeleton()
-            tableView.reloadData()
-        }
+        fetchGames()
     }
     
     private func setupView() {
@@ -98,7 +93,12 @@ class HomeViewController: UIViewController {
             animation: nil,
             transition: .none
         )
-        
+    }
+    
+    private func fetchGames() {
+        Task {
+            await viewModel.getGames()
+        }
     }
 }
 
@@ -144,9 +144,13 @@ extension HomeViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
+        let data: Game = viewModel.games[indexPath.row]
         let viewModel: GameDetailViewModel = GameDetailViewModel()
+        viewModel.configureDataFromList(data: data)
+        
         let gameDetailViewController: GameDetailViewController = GameDetailViewController(viewModel: viewModel)
         gameDetailViewController.hidesBottomBarWhenPushed = true
+        
         navigationController?.pushViewController(gameDetailViewController, animated: true)
     }
 }
@@ -169,5 +173,16 @@ extension HomeViewController: SkeletonTableViewDataSource {
         cellIdentifierForRowAt indexPath: IndexPath
     ) -> ReusableCellIdentifier {
         GameTableViewCell.name
+    }
+}
+
+extension HomeViewController: HomeViewModelProtocol {
+    func onSuccess() {
+        tableView.hideSkeleton()
+        tableView.reloadData()
+    }
+    
+    func onFailed(message: String) {
+        
     }
 }

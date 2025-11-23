@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class GameDetailHeaderTableViewCell: UITableViewCell {
     static let name: String = String(describing: GameDetailHeaderTableViewCell.self)
@@ -61,9 +62,6 @@ class GameDetailHeaderTableViewCell: UITableViewCell {
     
     private func setupView() {
         selectionStyle = .none
-        
-        backgroundImageView.image = .imageGodOfWar
-        posterImageView.image = .imageGodOfWar
         setupConstraint()
     }
     
@@ -92,14 +90,14 @@ class GameDetailHeaderTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             posterImageView.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor, constant: 16),
-            posterImageView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -29),
+            posterImageView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor),
             posterImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.4),
             posterImageView.widthAnchor.constraint(equalTo: posterImageView.heightAnchor, multiplier: 7/10),
         ])
         
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 10),
-            nameLabel.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: 10),
+            nameLabel.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: 40),
             nameLabel.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor, constant: -16)
         ])
         
@@ -147,21 +145,31 @@ class GameDetailHeaderTableViewCell: UITableViewCell {
         return stackView
     }
     
-    func configure(data: Game) {
-        nameLabel.text = data.name
-        
+    func configure(data: Game?) {
+        guard let data else { return }
         let genres: String = data.genres.compactMap { $0.name }.joined(separator: ", ")
         buildProfileTextLabel(genres: genres, releaseDate: data.released, developers: "Samson")
         
-        let platformNames: [String] = data.platforms.map {$0.slug}
-        let platforms: [Platform] = platformNames.compactMap { Platform(rawValue: $0)}
-        updatePlatforms(platforms)
+        nameLabel.text = data.name
+        
+        updatePlatforms(data.platforms)
+        setImage(stringURL: data.backgroundImage)
     }
     
-    private func updatePlatforms(_ platforms: [Platform]) {
+    private func setImage(stringURL: String?) {
+        if let stringURL,
+           let imageURL = URL(string: stringURL) {
+            backgroundImageView.kf.setImage(with: imageURL)
+            posterImageView.kf.setImage(with: imageURL)
+        }
+    }
+    
+    private func updatePlatforms(_ platforms: [PlatformElement]) {
+        let platformNames: [String] = platforms.map {$0.slug}
+        let platformsMapped: [Platform] = platformNames.compactMap { Platform(rawValue: $0)}
         platformStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
-        for platform in platforms {
+        for platform in platformsMapped {
             let icon = UIImageView(image: UIImage(named: platform.assetName))
             icon.contentMode = .scaleAspectFit
             icon.translatesAutoresizingMaskIntoConstraints = false

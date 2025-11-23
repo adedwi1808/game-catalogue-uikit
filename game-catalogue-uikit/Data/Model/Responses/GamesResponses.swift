@@ -16,8 +16,11 @@ struct GamesResponse: Codable {
     let released: String?
     let backgroundImage: String?
     let rating: Double?
+    let ratingCount: Int?
     let parentPlatforms: [ParentPlatformResponse]?
     let genres: [GenreResponse]?
+    let description: String?
+    let added: Int?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -27,7 +30,10 @@ struct GamesResponse: Codable {
         case backgroundImage = "background_image"
         case rating
         case parentPlatforms = "parent_platforms"
+        case ratingCount = "ratings_count"
         case genres
+        case description
+        case added
     }
 }
 
@@ -64,8 +70,11 @@ extension GamesResponse {
             released: released ?? "-",
             backgroundImage: backgroundImage,
             rating: rating,
+            ratingCount: ratingCount,
             platforms: parentPlatforms?.map { $0.toDomain() } ?? [],
-            genres: genres?.map { $0.toDomain() } ?? []
+            genres: genres?.map { $0.toDomain() } ?? [],
+            description: description,
+            added: added
         )
     }
 }

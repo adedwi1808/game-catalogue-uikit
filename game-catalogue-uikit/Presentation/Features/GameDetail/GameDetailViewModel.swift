@@ -8,5 +8,9 @@
 import Foundation
 
 final class GameDetailViewModel {
-    let data: Game = dummyGames[12]
+    var data: Game? = nil
+    
+    func configureDataFromList(data: Game) {
+        self.data = data
+    }
 }

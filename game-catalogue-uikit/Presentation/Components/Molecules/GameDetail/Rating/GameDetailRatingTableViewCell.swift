@@ -37,8 +37,6 @@ class GameDetailRatingTableViewCell: UITableViewCell {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         setupConstraint()
         
-        ratingSectionView.configure(rating: 4.42, numberOfVote: 999)
-        
         favoriteSectionView.onTap = {
             print("Click: Favorite")
         }
@@ -77,6 +75,12 @@ class GameDetailRatingTableViewCell: UITableViewCell {
             favoriteSectionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             favoriteSectionView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
         ])
+    }
+    
+    func configure(data: Game?) {
+        guard let data else { return }
+        ratingSectionView.configure(rating: data.rating ?? 0.0, numberOfVote: data.ratingCount ?? 0)
+        favoriteSectionView.configure(data: data, isAdded: true)
     }
     
 }

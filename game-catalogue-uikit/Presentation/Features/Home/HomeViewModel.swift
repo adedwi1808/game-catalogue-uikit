@@ -7,10 +7,21 @@
 
 import Foundation
 
+protocol HomeViewModelProtocol: AnyObject {
+    func onSuccess()
+    func onFailed(message: String)
+}
+
 @MainActor
 final class HomeViewModel {
+    var query: String = ""
+    var page: Int = 1
+    private var pageSize: Int = 10
+    
     var games: [Game] = []
+    
     var isLoading: Bool = false
+    weak var delegate: HomeViewModelProtocol? = nil
     
     private let services: HomeServicesProtocol
     
@@ -25,10 +36,14 @@ final class HomeViewModel {
         }
         
         do {
-            let _ = try await services.getGames(endPoint: .getGames)
+            let response = try await services.getGames(endPoint: .getGames(search: query, page: page, pageSize: pageSize))
+            let newGames: [Game] = response.results?.toDomain() ?? []
+            games = page > 1 ? games + newGames : newGames
+            delegate?.onSuccess()
         } catch let error {
             if error is NetworkError {
                 print(error.localizedDescription)
+                delegate?.onFailed(message: error.localizedDescription)
             }
         }
     }
