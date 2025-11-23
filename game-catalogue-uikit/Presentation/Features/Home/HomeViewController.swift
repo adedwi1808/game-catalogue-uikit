@@ -25,9 +25,9 @@ class HomeViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        self.viewModel = HomeViewModel()
-        super.init(coder: coder)
+        fatalError("Use init(viewModel:) instead")
     }
     
     override func viewDidLoad() {

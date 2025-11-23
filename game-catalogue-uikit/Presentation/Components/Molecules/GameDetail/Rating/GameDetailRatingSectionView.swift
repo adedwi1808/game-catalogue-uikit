@@ -77,7 +77,7 @@ class GameDetailRatingSectionView: UIView {
             starStackView.leadingAnchor.constraint(equalTo: ratingValueLabel.trailingAnchor, constant: 6),
             starStackView.trailingAnchor.constraint(lessThanOrEqualTo: ratingSectionHeaderView.trailingAnchor, constant: 36),
             starStackView.centerYAnchor.constraint(equalTo: ratingValueLabel.centerYAnchor),
-            starStackView.heightAnchor.constraint(equalToConstant: 18)
+            starStackView.heightAnchor.constraint(equalToConstant: 14)
         ])
         
         NSLayoutConstraint.activate([

@@ -48,6 +48,7 @@ class GameDetailViewController: UIViewController {
     private func setupView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(GameDetailHeaderTableViewCell.self, forCellReuseIdentifier: GameDetailHeaderTableViewCell.name)
         tableView.register(GameDetailRatingTableViewCell.self, forCellReuseIdentifier: GameDetailRatingTableViewCell.name)
         tableView.register(GameDetailDescriptionTableViewCell.self, forCellReuseIdentifier: GameDetailDescriptionTableViewCell.name)

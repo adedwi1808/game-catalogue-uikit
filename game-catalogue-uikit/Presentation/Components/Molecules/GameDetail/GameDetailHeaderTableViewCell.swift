@@ -95,7 +95,6 @@ class GameDetailHeaderTableViewCell: UITableViewCell {
             posterImageView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -29),
             posterImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.4),
             posterImageView.widthAnchor.constraint(equalTo: posterImageView.heightAnchor, multiplier: 7/10),
-            posterImageView.bottomAnchor.constraint(lessThanOrEqualTo: mainContainerView.bottomAnchor, constant: -22)
         ])
         
         NSLayoutConstraint.activate([

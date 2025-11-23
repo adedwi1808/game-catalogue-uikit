@@ -10,6 +10,8 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
+    private let networker: NetworkerProtocol = Networker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewControllers()
@@ -24,7 +26,8 @@ class MainTabBarController: UITabBarController {
     }
     
     private func createHomeNavigation() -> UINavigationController {
-        let homeViewModel: HomeViewModel = HomeViewModel()
+        let services: HomeServicesProtocol = HomeServices(networker: networker)
+        let homeViewModel: HomeViewModel = HomeViewModel(services: services)
         let homeViewController: HomeViewController = HomeViewController(viewModel: homeViewModel)
         
         let nav = UINavigationController(rootViewController: homeViewController)

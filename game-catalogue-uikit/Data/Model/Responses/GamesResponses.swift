@@ -8,18 +8,6 @@
 
 import Foundation
 
-// MARK: - GamesResponses
-struct GamesResponses: Codable {
-    let count: Int?
-    let next: String?
-    let previous: String?
-    let results: [GamesResponse]?
-    
-    enum CodingKeys: String, CodingKey {
-        case count, next, previous, results
-    }
-}
-
 // MARK: - GamesResponse
 struct GamesResponse: Codable {
     let id: Int?
@@ -42,8 +30,6 @@ struct GamesResponse: Codable {
         case genres
     }
 }
-
-
 
 // MARK: - GenreResponse
 struct GenreResponse: Codable {
