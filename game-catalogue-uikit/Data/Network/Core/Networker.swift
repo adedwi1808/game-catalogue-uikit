@@ -34,11 +34,11 @@ final class Networker: NetworkerProtocol {
             
             switch httpResponse.statusCode {
             case 400:
-                throw NetworkError.badRequest(message: res?.message ?? "")
+                throw NetworkError.badRequest(message: res?.error ?? "Something went wrong")
             case 401:
                 throw NetworkError.unAuthorized
             default:
-                throw NetworkError.middlewareError(code: 500, message: "Connection Error")
+                throw NetworkError.middlewareError(code: 500, message: res?.error ?? "Something went wrong")
             }
         }
         
@@ -50,7 +50,7 @@ final class Networker: NetworkerProtocol {
 #if DEBUG
             print(decodingError)
 #endif
-            throw NetworkError.decodingError(message: decodingError.errorDescription ?? "")
+            throw NetworkError.decodingError(message: "Something went wrong")
         }
     }
 }

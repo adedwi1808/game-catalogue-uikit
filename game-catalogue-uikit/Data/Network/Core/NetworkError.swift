@@ -54,6 +54,5 @@ enum ErrorState {
 }
 
 struct NetworkHandle: Decodable, Error, LocalizedError {
-    let error: Bool?
-    let message: String?
+    let error: String?
 }
