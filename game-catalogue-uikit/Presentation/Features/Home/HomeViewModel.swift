@@ -10,6 +10,7 @@ import Foundation
 protocol HomeViewModelProtocol: AnyObject {
     func onSuccess()
     func onFailed(message: String)
+    func onLoading(_ isLoading: Bool)
 }
 
 @MainActor
@@ -19,18 +20,46 @@ final class HomeViewModel {
     private var pageSize: Int = 10
     
     var games: [Game] = []
-    weak var delegate: HomeViewModelProtocol? = nil
+    var isLoading: Bool = false
+    var hasMoreData: Bool = true
     
+    weak var delegate: HomeViewModelProtocol? = nil
     private let services: HomeServicesProtocol
     
     init(services: HomeServicesProtocol) {
         self.services = services
     }
     
+    func loadNextPage() {
+        guard !isLoading, hasMoreData else { return }
+        page += 1
+        Task {
+            await getGames()
+        }
+    }
+    
+    func searchGames(query: String) {
+        self.query = query
+        self.page = 1
+        self.games = []
+        self.hasMoreData = true
+        Task {
+            await getGames()
+        }
+    }
+    
     func getGames() async {
+        isLoading = true
+        if page > 1 { delegate?.onLoading(true) }
+        
         do {
             let response = try await services.getGames(endPoint: .getGames(search: query, page: page, pageSize: pageSize))
             let newGames: [Game] = response.results?.toDomain() ?? []
+            
+            if newGames.count < pageSize {
+                hasMoreData = false
+            }
+            
             games = page > 1 ? games + newGames : newGames
             delegate?.onSuccess()
         } catch let error {
@@ -39,6 +68,9 @@ final class HomeViewModel {
                 delegate?.onFailed(message: error.localizedDescription)
             }
         }
+        
+        isLoading = false
+        delegate?.onLoading(false)
     }
     
     func createDetailViewModel(for index: Int) -> GameDetailViewModel {
