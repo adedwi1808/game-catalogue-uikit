@@ -11,7 +11,7 @@ final class GameDetailServices: GameDetailServicesProtocol {
     var realm: any RealmManagerProtocol
     var networker: any NetworkerProtocol
     
-    init(networker: any NetworkerProtocol, realm: any RealmManagerProtocol = RealmManager()) {
+    init(networker: any NetworkerProtocol, realm: any RealmManagerProtocol) {
         self.networker = networker
         self.realm = realm
     }

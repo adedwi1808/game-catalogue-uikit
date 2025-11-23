@@ -8,10 +8,12 @@
 import Foundation
 
 final class HomeServices: HomeServicesProtocol {
+    var realm: any RealmManagerProtocol
     var networker: any NetworkerProtocol
     
-    init(networker: any NetworkerProtocol) {
+    init(networker: any NetworkerProtocol, realm: any RealmManagerProtocol) {
         self.networker = networker
+        self.realm = realm
     }
     
     func getGames(endPoint: NetworkFactory) async throws -> PaginationResponseModel<GamesResponse> {
@@ -19,6 +21,6 @@ final class HomeServices: HomeServicesProtocol {
     }
     
     func makeGameDetailServices() -> GameDetailServicesProtocol {
-        return GameDetailServices(networker: self.networker)
+        return GameDetailServices(networker: self.networker, realm: realm)
     }
 }

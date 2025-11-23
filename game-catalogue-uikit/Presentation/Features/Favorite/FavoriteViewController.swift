@@ -21,23 +21,30 @@ class FavoriteViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        self.viewModel = FavoriteViewModel()
-        super.init(coder: coder)
+        fatalError("Use init(viewModel:) instead")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
+        
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadLocaleData()
+    }
+    
     private func setupView() {
-        setupSearchBar()
+        setupNavigationBar()
         setupTableView()
         setupConstraint()
     }
     
-    private func setupSearchBar() {
+    private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Favorite List"
     }
@@ -66,12 +73,11 @@ class FavoriteViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-}
-
-extension FavoriteViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        let query = searchController.searchBar.text ?? ""
-        print("Hasil Query: \(query)")
+    
+    private func loadLocaleData() {
+        Task {
+            await viewModel.getLocaleGames()
+        }
     }
 }
 
@@ -110,7 +116,32 @@ extension FavoriteViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        print("Click at: \(indexPath.row)")
+        guard indexPath.row < viewModel.games.count else { return }
+        
+        let detailViewModel = viewModel.createDetailViewModel(for: indexPath.row)
+        let gameDetailViewController = GameDetailViewController(viewModel: detailViewModel)
+        gameDetailViewController.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(gameDetailViewController, animated: true)
     }
 }
 
+extension FavoriteViewController: FavoriteViewModelProtocol {
+    func onSuccess() {
+        tableView.reloadData()
+    }
+    
+    func onFailed(message: String) {
+        let alertController = UIAlertController(
+            title: "Failed to fetch data",
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        present(alertController, animated: true)
+        
+        self.tableView.tableFooterView = nil
+    }
+}

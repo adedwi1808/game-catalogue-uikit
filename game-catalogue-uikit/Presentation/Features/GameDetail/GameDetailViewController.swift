@@ -29,7 +29,6 @@ class GameDetailViewController: UIViewController {
         fatalError("Use init(viewModel:) instead")
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self

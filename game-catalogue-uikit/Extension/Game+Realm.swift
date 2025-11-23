@@ -40,3 +40,20 @@ extension Game {
         return entity
     }
 }
+
+extension GameEntity {
+    func toDomain() -> Game {
+        return Game(
+            id: self.id,
+            name: self.name,
+            released: self.released,
+            backgroundImage: self.backgroundImage,
+            rating: self.rating,
+            ratingCount: self.ratingCount,
+            platforms: self.platforms.map { PlatformElement(id: $0.id, name: $0.name, slug: $0.slug) },
+            genres: self.genres.map { Genre(id: $0.id, name: $0.name) },
+            description: self.desc,
+            added: self.added
+        )
+    }
+}

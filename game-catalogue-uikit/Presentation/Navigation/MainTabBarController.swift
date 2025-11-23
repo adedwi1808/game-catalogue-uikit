@@ -11,6 +11,7 @@ import UIKit
 class MainTabBarController: UITabBarController {
     
     private let networker: NetworkerProtocol = Networker()
+    private let realm: RealmManagerProtocol = RealmManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func createHomeNavigation() -> UINavigationController {
-        let services: HomeServicesProtocol = HomeServices(networker: networker)
+        let services: HomeServicesProtocol = HomeServices(networker: networker, realm: realm)
         let homeViewModel: HomeViewModel = HomeViewModel(services: services)
         let homeViewController: HomeViewController = HomeViewController(viewModel: homeViewModel)
         
@@ -53,7 +54,8 @@ class MainTabBarController: UITabBarController {
     }
     
     private func createFavoriteNavigation() -> UINavigationController {
-        let favoriteViewModel: FavoriteViewModel = FavoriteViewModel()
+        let services: FavoriteServicesProtocol = FavoriteServices(networker: networker, realm: realm)
+        let favoriteViewModel: FavoriteViewModel = FavoriteViewModel(services: services)
         let favoriteViewController = FavoriteViewController(viewModel: favoriteViewModel)
         
         let nav = UINavigationController(rootViewController: favoriteViewController)
