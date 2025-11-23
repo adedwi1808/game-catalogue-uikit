@@ -11,14 +11,15 @@ import SkeletonView
 class HomeViewController: UIViewController {
     
     private let searchController = UISearchController(searchResultsController: nil)
-    
-    private var searchTimer: Timer?
+    private let refreshControl = UIRefreshControl()
     
     private let tableView: UITableView = {
         let tableView: UITableView = UITableView()
         tableView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         return tableView
     }()
+    
+    private var searchTimer: Timer?
     
     private let viewModel: HomeViewModel
     
@@ -70,6 +71,9 @@ class HomeViewController: UIViewController {
         tableView.isSkeletonable = true
         tableView.separatorStyle = .none
         
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -110,6 +114,11 @@ class HomeViewController: UIViewController {
         Task {
             await viewModel.getGames()
         }
+    }
+    
+    @objc private func handleRefresh() {
+        viewModel.page = 1
+        fetchGames()
     }
 }
 
@@ -208,6 +217,7 @@ extension HomeViewController: SkeletonTableViewDataSource {
 
 extension HomeViewController: HomeViewModelProtocol {
     func onSuccess() {
+        refreshControl.endRefreshing()
         tableView.hideSkeleton()
         tableView.reloadData()
         
@@ -217,6 +227,7 @@ extension HomeViewController: HomeViewModelProtocol {
     }
     
     func onFailed(message: String) {
+        refreshControl.endRefreshing()
         let alertController = UIAlertController(
             title: "Failed to fetch data",
             message: message,
