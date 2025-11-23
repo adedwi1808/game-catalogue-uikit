@@ -48,7 +48,6 @@ class GameDetailHeaderTableViewCell: UITableViewCell {
         stackView.spacing = 6
         return stackView
     }()
-
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -161,28 +160,28 @@ class GameDetailHeaderTableViewCell: UITableViewCell {
     }
     
     private func updatePlatforms(_ platforms: [Platform]) {
-            platformStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        platformStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        for platform in platforms {
+            let icon = UIImageView(image: UIImage(named: platform.assetName))
+            icon.contentMode = .scaleAspectFit
+            icon.translatesAutoresizingMaskIntoConstraints = false
             
-            for platform in platforms {
-                let icon = UIImageView(image: UIImage(named: platform.assetName))
-                icon.contentMode = .scaleAspectFit
-                icon.translatesAutoresizingMaskIntoConstraints = false
-                
-                NSLayoutConstraint.activate([
-                    icon.widthAnchor.constraint(equalToConstant: 16),
-                    icon.heightAnchor.constraint(equalToConstant: 16)
-                ])
-                
-                platformStackView.addArrangedSubview(icon)
-            }
+            NSLayoutConstraint.activate([
+                icon.widthAnchor.constraint(equalToConstant: 16),
+                icon.heightAnchor.constraint(equalToConstant: 16)
+            ])
             
-            let spacerView = UIView()
-            spacerView.backgroundColor = .clear
-            spacerView.setContentHuggingPriority(.defaultLow, for: .horizontal)
-            spacerView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-            spacerView.translatesAutoresizingMaskIntoConstraints = false
-            
-            platformStackView.addArrangedSubview(spacerView)
-            platformStackView.layoutIfNeeded()
+            platformStackView.addArrangedSubview(icon)
         }
+        
+        let spacerView = UIView()
+        spacerView.backgroundColor = .clear
+        spacerView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        spacerView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        spacerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        platformStackView.addArrangedSubview(spacerView)
+        platformStackView.layoutIfNeeded()
+    }
 }
