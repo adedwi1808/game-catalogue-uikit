@@ -81,7 +81,7 @@ class GameDetailFavoriteSectionView: UIView {
         
         NSLayoutConstraint.activate([
             favoriteSectionHeaderView.leadingAnchor.constraint(equalTo: containerButton.leadingAnchor),
-            favoriteSectionHeaderView.centerXAnchor.constraint(equalTo: containerButton.centerXAnchor),
+            favoriteSectionHeaderView.trailingAnchor.constraint(equalTo: containerButton.trailingAnchor),
             favoriteSectionHeaderView.heightAnchor.constraint(equalToConstant: 18)
         ])
         
@@ -93,7 +93,7 @@ class GameDetailFavoriteSectionView: UIView {
         
         NSLayoutConstraint.activate([
             favoriteLabel.leadingAnchor.constraint(equalTo: heartImageView.trailingAnchor, constant: 6),
-            favoriteLabel.trailingAnchor.constraint(lessThanOrEqualTo: favoriteSectionHeaderView.trailingAnchor, constant: 36),
+            favoriteLabel.trailingAnchor.constraint(lessThanOrEqualTo: favoriteSectionHeaderView.trailingAnchor, constant: -36),
             favoriteLabel.centerYAnchor.constraint(equalTo: heartImageView.centerYAnchor),
             favoriteLabel.heightAnchor.constraint(equalToConstant: 18)
         ])
