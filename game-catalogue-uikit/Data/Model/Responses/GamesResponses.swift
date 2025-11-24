@@ -21,6 +21,7 @@ struct GamesResponse: Codable {
     let genres: [GenreResponse]?
     let description: String?
     let added: Int?
+    let developers: [DevelopersResponse]?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -34,6 +35,7 @@ struct GamesResponse: Codable {
         case genres
         case description = "description_raw"
         case added
+        case developers
     }
 }
 
@@ -62,6 +64,16 @@ struct PlatformResponse: Codable {
     }
 }
 
+// MARK: - DevelopersResponse
+struct DevelopersResponse: Codable {
+    let id: Int?
+    let name: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name
+    }
+}
+
 extension GamesResponse {
     func toDomain() -> Game {
         return Game(
@@ -74,7 +86,8 @@ extension GamesResponse {
             platforms: parentPlatforms?.map { $0.toDomain() } ?? [],
             genres: genres?.map { $0.toDomain() } ?? [],
             description: description,
-            added: added
+            added: added,
+            developers: developers?.first?.name
         )
     }
 }

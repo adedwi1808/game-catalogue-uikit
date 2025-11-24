@@ -19,6 +19,7 @@ extension Game {
         entity.ratingCount = self.ratingCount
         entity.desc = self.description
         entity.added = self.added
+        entity.developers = self.developers
         
         let genreEntities = self.genres.map { genre in
             let g = GenreEntity()
@@ -53,7 +54,8 @@ extension GameEntity {
             platforms: self.platforms.map { PlatformElement(id: $0.id, name: $0.name, slug: $0.slug) },
             genres: self.genres.map { Genre(id: $0.id, name: $0.name) },
             description: self.desc,
-            added: self.added
+            added: self.added,
+            developers: self.developers
         )
     }
 }

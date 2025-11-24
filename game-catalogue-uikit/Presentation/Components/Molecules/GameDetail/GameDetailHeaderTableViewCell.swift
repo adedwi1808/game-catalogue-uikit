@@ -98,7 +98,8 @@ class GameDetailHeaderTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 10),
             nameLabel.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: 40),
-            nameLabel.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor, constant: -16)
+            nameLabel.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor, constant: -16),
+            nameLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 44)
         ])
         
         NSLayoutConstraint.activate([
@@ -148,7 +149,7 @@ class GameDetailHeaderTableViewCell: UITableViewCell {
     func configure(data: Game?) {
         guard let data else { return }
         let genres: String = data.genres.compactMap { $0.name }.joined(separator: ", ")
-        buildProfileTextLabel(genres: genres, releaseDate: data.released, developers: "Samson")
+        buildProfileTextLabel(genres: genres, releaseDate: data.released, developers: data.developers ?? "")
         
         nameLabel.text = data.name
         

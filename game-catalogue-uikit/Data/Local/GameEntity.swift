@@ -21,6 +21,7 @@ class GameEntity: Object {
     
     @Persisted var platforms = List<PlatformEntity>()
     @Persisted var genres = List<GenreEntity>()
+    @Persisted var developers: String?
     
     convenience init(id: Int, name: String) {
         self.init()

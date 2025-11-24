@@ -17,6 +17,7 @@ struct Game {
     let genres: [Genre]
     let description: String?
     let added: Int?
+    let developers: String?
 }
 
 struct Genre {

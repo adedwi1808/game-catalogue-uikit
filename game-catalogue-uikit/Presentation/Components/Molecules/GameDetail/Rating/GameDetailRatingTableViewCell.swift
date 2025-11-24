@@ -15,7 +15,7 @@ class GameDetailRatingTableViewCell: UITableViewCell {
     private let favoriteSectionView: GameDetailFavoriteSectionView = GameDetailFavoriteSectionView()
     private let dividerView: UIView = {
         let view: UIView = UIView()
-        view.backgroundColor = .systemGray2
+        view.backgroundColor = .divider
         return view
     }()
 
@@ -59,9 +59,9 @@ class GameDetailRatingTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             dividerView.leadingAnchor.constraint(equalTo: ratingSectionView.trailingAnchor),
-            dividerView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            dividerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            dividerView.widthAnchor.constraint(equalToConstant: 4)
+            dividerView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            dividerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,constant: -16),
+            dividerView.widthAnchor.constraint(equalToConstant: 2)
         ])
         
         NSLayoutConstraint.activate([

@@ -114,6 +114,8 @@ class GameTableViewCell: UITableViewCell {
         }
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
+        nameLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 38).isActive = true
+        
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),

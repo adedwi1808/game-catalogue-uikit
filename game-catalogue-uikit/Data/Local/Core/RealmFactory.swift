@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+internal import Realm
 
 enum RealmFactory {
     case main
@@ -43,7 +44,8 @@ extension RealmFactory {
                 fileURL: try? FileManager.default
                     .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
                     .appendingPathComponent(fileName),
-                schemaVersion: schemaVersion,
+                schemaVersion: 2,
+                deleteRealmIfMigrationNeeded: true
             )
             return config
             
