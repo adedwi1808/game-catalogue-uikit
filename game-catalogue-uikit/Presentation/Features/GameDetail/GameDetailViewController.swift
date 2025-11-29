@@ -26,7 +26,9 @@ class GameDetailViewController: UIViewController {
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("Use init(viewModel:) instead")
+        let services: GameDetailServices = GameDetailServices(networker: Networker(), realm: RealmManager())
+        self.viewModel = GameDetailViewModel(services: services)
+        super.init(coder: coder)
     }
     
     override func viewDidLoad() {

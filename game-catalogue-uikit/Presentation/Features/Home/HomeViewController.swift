@@ -30,7 +30,9 @@ class HomeViewController: UIViewController {
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("Use init(viewModel:) instead")
+        let services: HomeServices = HomeServices(networker: Networker(), realm: RealmManager())
+        self.viewModel = HomeViewModel(services: services)
+        super.init(coder: coder)
     }
     
     override func viewDidLoad() {

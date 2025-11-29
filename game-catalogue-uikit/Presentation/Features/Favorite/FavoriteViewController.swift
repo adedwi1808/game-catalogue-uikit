@@ -23,7 +23,10 @@ class FavoriteViewController: UIViewController {
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("Use init(viewModel:) instead")
+        let services: FavoriteServicesProtocol = FavoriteServices(networker: Networker(), realm: RealmManager())
+        self.viewModel = FavoriteViewModel(services: services)
+        super.init(coder: coder)
+        setupView()
     }
     
     override func viewDidLoad() {
