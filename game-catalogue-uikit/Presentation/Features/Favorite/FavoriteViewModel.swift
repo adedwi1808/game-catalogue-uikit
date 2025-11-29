@@ -10,6 +10,7 @@ import Foundation
 protocol FavoriteViewModelProtocol: AnyObject {
     func onSuccess()
     func onFailed(message: String)
+    func onLoading(_ isLoading: Bool)
 }
 
 @MainActor
@@ -25,6 +26,7 @@ final class FavoriteViewModel {
     }
     
     func getLocaleGames() async {
+        delegate?.onLoading(true)
         do {
             games = try await services.getLocaleGames()
             delegate?.onSuccess()
@@ -32,6 +34,7 @@ final class FavoriteViewModel {
             print(error.localizedDescription)
             delegate?.onFailed(message: error.localizedDescription)
         }
+        delegate?.onLoading(false)
     }
     
     func createDetailViewModel(for index: Int) -> GameDetailViewModel {

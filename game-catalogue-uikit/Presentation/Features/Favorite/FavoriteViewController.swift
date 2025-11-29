@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class FavoriteViewController: UIViewController {
     private let tableView: UITableView = {
@@ -14,6 +15,7 @@ class FavoriteViewController: UIViewController {
         return tableView
     }()
     
+    private let refreshControl = UIRefreshControl()
     private let viewModel: FavoriteViewModel
     
     init(viewModel: FavoriteViewModel) {
@@ -38,6 +40,7 @@ class FavoriteViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        showShimmer()
         loadLocaleData()
     }
     
@@ -47,13 +50,26 @@ class FavoriteViewController: UIViewController {
         setupConstraint()
     }
     
+    private func createSpinnerFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        return footerView
+    }
+    
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Favorite List"
     }
     
     private func setupTableView() {
+        tableView.isSkeletonable = true
         tableView.separatorStyle = .none
+        
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -77,10 +93,26 @@ class FavoriteViewController: UIViewController {
         ])
     }
     
+    private func showShimmer() {
+        tableView.showAnimatedGradientSkeleton(
+            usingGradient: SkeletonGradient(
+                baseColor: UIColor(white: 0.82, alpha: 1.0),
+                secondaryColor: UIColor(white: 0.92, alpha: 1.0)
+            ),
+            animation: nil,
+            transition: .none
+        )
+    }
+    
+    
     private func loadLocaleData() {
         Task {
             await viewModel.getLocaleGames()
         }
+    }
+    
+    @objc private func handleRefresh() {
+        loadLocaleData()
     }
 }
 
@@ -119,6 +151,7 @@ extension FavoriteViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
+        if tableView.sk.isSkeletonActive { return }
         guard indexPath.row < viewModel.games.count else { return }
         
         let detailViewModel = viewModel.createDetailViewModel(for: indexPath.row)
@@ -131,10 +164,17 @@ extension FavoriteViewController: UITableViewDelegate {
 
 extension FavoriteViewController: FavoriteViewModelProtocol {
     func onSuccess() {
+        refreshControl.endRefreshing()
+        tableView.hideSkeleton()
         tableView.reloadData()
+        
+        if !viewModel.games.isEmpty  {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
     
     func onFailed(message: String) {
+        refreshControl.endRefreshing()
         let alertController = UIAlertController(
             title: "Failed to fetch data",
             message: message,
@@ -146,5 +186,33 @@ extension FavoriteViewController: FavoriteViewModelProtocol {
         present(alertController, animated: true)
         
         self.tableView.tableFooterView = nil
+    }
+    
+    func onLoading(_ isLoading: Bool) {
+        if isLoading {
+            self.tableView.tableFooterView = createSpinnerFooter()
+        } else {
+            self.tableView.tableFooterView = nil
+        }
+    }
+}
+
+extension FavoriteViewController: SkeletonTableViewDataSource {
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        1
+    }
+    
+    func collectionSkeletonView(
+        _ skeletonView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
+        3
+    }
+    
+    func collectionSkeletonView(
+        _ skeletonView: UITableView,
+        cellIdentifierForRowAt indexPath: IndexPath
+    ) -> ReusableCellIdentifier {
+        GameTableViewCell.name
     }
 }
