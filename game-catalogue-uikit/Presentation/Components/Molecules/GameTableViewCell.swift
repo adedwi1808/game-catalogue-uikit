@@ -174,7 +174,7 @@ class GameTableViewCell: UITableViewCell {
            let url = URL(string: backgroundImage) {
             posterImageView.kf.setImage(with: url)
         } else {
-            posterImageView.image = UIImage(systemName: "photo.trianglebadge.exclamationmark")!.withTintColor(.raisinBlack)
+            posterImageView.image = .imageExclamation
         }
         
         nameLabel.text = data.name

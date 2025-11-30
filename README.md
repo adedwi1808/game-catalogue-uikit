@@ -25,8 +25,8 @@
 
 ## Design
 
-* [https://www.figma.com/design/rFCOJn3KDmnavRXY7xKHxh/Tourism-APP?m=auto&t=mRekcYQUOk53ZGRe-6](https://www.figma.com/design/A43jN3aNoW9EuMhDYXuh7x/RAWG?node-id=3-601&t=FrEKWyt06hfDl3XX-1)
-
+* 
+    [Figma Design](https://www.figma.com/design/A43jN3aNoW9EuMhDYXuh7x/RAWG?node-id=0-1&t=ypNmkMDpIBHwynML-1)
 ---
 
 ## API Reference
