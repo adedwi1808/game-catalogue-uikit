@@ -162,6 +162,8 @@ class GameDetailHeaderTableViewCell: UITableViewCell {
            let imageURL = URL(string: stringURL) {
             backgroundImageView.kf.setImage(with: imageURL)
             posterImageView.kf.setImage(with: imageURL)
+        }  else {
+            posterImageView.image = .imageExclamation
         }
     }
     
