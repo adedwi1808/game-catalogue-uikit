@@ -11,7 +11,7 @@
 1. Clone repositori ini:
 
    ```bash
-   git clone [<repo-url>](https://github.com/adedwi1808/game-catalogue-uikit.git)
+   git clone https://github.com/adedwi1808/game-catalogue-uikit.git
    ```
 2. Buka file `.xcodeproj` di Xcode.
 3. Pastikan Swift Package Manager (SPM) mengunduh semua *dependency*:
