@@ -9,12 +9,18 @@ import Combine
 import Foundation
 
 protocol HomeUseCase {
-//    func getGames(endPoint: NetworkFactory) -> AnyPublisher<[Game], Error>
+    func getGames(endPoint: NetworkFactory) -> AnyPublisher<[Game], Error>
 }
 
-final class HomeInteractor: HomeUseCase { 
+final class HomeInteractor: HomeUseCase {
 
-//    func getGames(endPoint: NetworkFactory) -> AnyPublisher<[Game], any Error> {
-//
-//    }
+    private let repository: GameRepositoryProtocol
+
+    required init(repository: GameRepositoryProtocol) {
+        self.repository = repository
+    }
+
+    func getGames(endPoint: NetworkFactory) -> AnyPublisher<[Game], any Error> {
+        repository.getGames(endPoint: endPoint)
+    }
 }
