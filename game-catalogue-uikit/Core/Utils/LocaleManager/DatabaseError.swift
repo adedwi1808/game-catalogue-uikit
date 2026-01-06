@@ -14,7 +14,8 @@ enum DatabaseError: Error, LocalizedError {
     case objectNotFound(message: String)
     case migrationError(message: String)
     case unknown
-    
+    case invalidInstance
+
     var errorDescription: String? {
         switch self {
         case .writeFailed(let message):
@@ -27,6 +28,8 @@ enum DatabaseError: Error, LocalizedError {
             return "Migration Error: \(message)"
         case .unknown:
             return "Unknown Database Error"
+        case .invalidInstance:
+            return "Failed To Make Realm Instance"
         }
     }
 }
