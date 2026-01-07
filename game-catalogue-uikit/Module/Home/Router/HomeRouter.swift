@@ -11,7 +11,6 @@ class HomeRouter {
     func makeDetailPage(for game: Game) {
 //        let gameDetailViewController = GameDetailViewController(viewModel: detailViewModel)
 //        gameDetailViewController.hidesBottomBarWhenPushed = true
-//
 //        navigationController?.pushViewController(gameDetailViewController, animated: true)
     }
 }

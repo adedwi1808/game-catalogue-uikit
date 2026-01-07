@@ -31,19 +31,20 @@ class HomeViewController: UIViewController {
     init(presenter: HomePresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+        presenter.attachView(self)
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         self.presenter = HomePresenter(homeUseCase: Injection().provideHome())
         super.init(coder: coder)
+        presenter.attachView(self) 
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.delegate = self
         setupView()
-        //        showShimmer()
+        showShimmer()
         presenter.loadInitial()
     }
 
@@ -212,6 +213,7 @@ extension HomeViewController: SkeletonTableViewDataSource {
 extension HomeViewController: HomeViewProtocol {
 
     func onLoading(_ isLoading: Bool) {
+        print("isLoading: \(isLoading)")
         isLoading
             ? tableView.showAnimatedGradientSkeleton()
             : tableView.hideSkeleton()

@@ -5,8 +5,8 @@
 //  Created by Ade Dwi Prayitno on 06/01/26.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol HomeViewProtocol: AnyObject {
     func onSuccess()
@@ -17,7 +17,7 @@ protocol HomeViewProtocol: AnyObject {
 @MainActor
 final class HomePresenter {
 
-    weak var delegate: HomeViewProtocol?
+    weak var view: HomeViewProtocol?
 
     private let router = HomeRouter()
     private let homeUseCase: HomeUseCase
@@ -37,13 +37,17 @@ final class HomePresenter {
         bind()
     }
 
+    func attachView(_ view: HomeViewProtocol) {
+        self.view = view
+        bind()
+    }
+
     private func bind() {
         querySubject
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
             .removeDuplicates()
-            .handleEvents(receiveRequest:  { [weak self] _ in
+            .handleEvents(receiveRequest: { [weak self] _ in
                 self?.reset()
-                self?.delegate?.onLoading(true)
             })
             .flatMap { [weak self] query -> AnyPublisher<[Game], Error> in
                 guard let self else { return Empty().eraseToAnyPublisher() }
@@ -58,16 +62,18 @@ final class HomePresenter {
             }
             .sink(
                 receiveCompletion: { [weak self] completion in
-                    self?.delegate?.onLoading(false)
-                    if case let .failure(error) = completion {
-                        self?.delegate?.onFailed(message: error.localizedDescription)
+                    if case .failure(let error) = completion {
+                        self?.view?.onFailed(
+                            message: error.localizedDescription
+                        )
                     }
                 },
                 receiveValue: { [weak self] games in
                     guard let self else { return }
                     self.games = games
                     self.hasMoreData = games.count == self.pageSize
-                    self.delegate?.onSuccess()
+                    self.view?.onSuccess()
+                    self.view?.onLoading(false)
                 }
             )
             .store(in: &cancellables)
@@ -107,12 +113,13 @@ final class HomePresenter {
         .sink(
             receiveCompletion: { [weak self] _ in
                 self?.isLoading = false
+                self?.view?.onLoading(false)
             },
             receiveValue: { [weak self] newGames in
                 guard let self else { return }
                 self.games.append(contentsOf: newGames)
                 self.hasMoreData = newGames.count == self.pageSize
-                self.delegate?.onSuccess()
+                self.view?.onSuccess()
             }
         )
         .store(in: &cancellables)
