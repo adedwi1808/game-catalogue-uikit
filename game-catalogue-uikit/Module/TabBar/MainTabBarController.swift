@@ -63,25 +63,22 @@ class MainTabBarController: UITabBarController {
     }
 
     private func createFavoriteNavigation() -> UINavigationController {
-        let services: FavoriteServicesProtocol = FavoriteServices(
-            networker: networker,
-            realm: realm
-        )
-        let favoriteViewModel: FavoriteViewModel = FavoriteViewModel(
-            services: services
-        )
-        let favoriteViewController = FavoriteViewController(
-            viewModel: favoriteViewModel
+        let router = FavoriteRouter()
+        let presenter = FavoritePresenter(
+            useCase: Injection().provideFavorite(),
+            router: router
         )
 
-        let nav = UINavigationController(
-            rootViewController: favoriteViewController
-        )
+        let vc = FavoriteViewController(presenter: presenter)
+
+        let nav = UINavigationController(rootViewController: vc)
         nav.tabBarItem = UITabBarItem(
             title: "Favorite",
             image: UIImage(systemName: "heart"),
             selectedImage: UIImage(systemName: "heart.fill")
         )
+
         return nav
     }
+
 }
