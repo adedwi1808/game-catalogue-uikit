@@ -9,9 +9,6 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 
-    private let networker: NetworkerProtocol = Networker()
-    private let realm: RealmManagerProtocol = RealmManager()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewControllers()
@@ -48,8 +45,9 @@ class MainTabBarController: UITabBarController {
     }
 
     private func createAboutNavigation() -> UINavigationController {
-        let aboutViewModel: AboutViewModel = AboutViewModel()
-        let aboutViewController = AboutViewController(viewModel: aboutViewModel)
+        let aboutViewController = AboutViewController(
+            presenter: AboutPresenter(interactor: Injection().provideAbout())
+        )
 
         let nav = UINavigationController(
             rootViewController: aboutViewController

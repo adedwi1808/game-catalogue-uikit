@@ -36,4 +36,7 @@ final class Injection: NSObject {
         return FavoriteInteractor(repository: repository)
     }
 
+    func provideAbout() -> AboutUseCase {
+        return AboutInteractor()
+    }
 }
