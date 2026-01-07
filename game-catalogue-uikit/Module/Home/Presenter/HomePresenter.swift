@@ -18,8 +18,8 @@ protocol HomeViewProtocol: AnyObject {
 final class HomePresenter {
 
     weak var view: HomeViewProtocol?
+    private var router: HomeRouterProtocol?
 
-    private let router = HomeRouter()
     private let homeUseCase: HomeUseCase
 
     private let querySubject = CurrentValueSubject<String, Never>("")
@@ -40,6 +40,10 @@ final class HomePresenter {
     func attachView(_ view: HomeViewProtocol) {
         self.view = view
         bind()
+    }
+
+    func attachRouter(_ router: HomeRouterProtocol) {
+        self.router = router
     }
 
     private func bind() {
@@ -126,6 +130,7 @@ final class HomePresenter {
     }
 
     func navigateToDetail(index: Int) {
-        router.makeDetailPage(for: games[index])
+        guard index < games.count else { return }
+        router?.makeDetailPage(for: games[index])
     }
 }

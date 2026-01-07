@@ -7,10 +7,29 @@
 
 import UIKit
 
-class HomeRouter {
+protocol HomeRouterProtocol {
+    func makeDetailPage(for game: Game)
+}
+
+final class HomeRouter: HomeRouterProtocol {
+
+    weak var navigationController: UINavigationController?
+
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
+    }
+
     func makeDetailPage(for game: Game) {
-//        let gameDetailViewController = GameDetailViewController(viewModel: detailViewModel)
-//        gameDetailViewController.hidesBottomBarWhenPushed = true
-//        navigationController?.pushViewController(gameDetailViewController, animated: true)
+        let presenter = GameDetailPresenter(
+            useCase: Injection().provideGameDetail()
+        )
+
+        let vc = GameDetailViewController(
+            presenter: presenter,
+            game: game
+        )
+
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

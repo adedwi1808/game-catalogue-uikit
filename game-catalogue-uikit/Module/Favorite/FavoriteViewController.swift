@@ -154,11 +154,11 @@ extension FavoriteViewController: UITableViewDelegate {
         if tableView.sk.isSkeletonActive { return }
         guard indexPath.row < viewModel.games.count else { return }
         
-        let detailViewModel = viewModel.createDetailViewModel(for: indexPath.row)
-        let gameDetailViewController = GameDetailViewController(viewModel: detailViewModel)
-        gameDetailViewController.hidesBottomBarWhenPushed = true
-        
-        navigationController?.pushViewController(gameDetailViewController, animated: true)
+//        let detailViewModel = viewModel.createDetailViewModel(for: indexPath.row)
+//        let gameDetailViewController = GameDetailViewController(viewModel: detailViewModel)
+//        gameDetailViewController.hidesBottomBarWhenPushed = true
+//        
+//        navigationController?.pushViewController(gameDetailViewController, animated: true)
     }
 }
 
