@@ -40,7 +40,7 @@
 /* Begin PBXFileReference section */
 		ADC4FBD12ECEB76D0040C6BB /* game-catalogue-uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "game-catalogue-uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE14EC42F0E0ED700D0A41D /* GameCatalogueUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameCatalogueUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ADE14EDE2F0E117300D0A41D /* game-catalogue-uikit.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; path = "game-catalogue-uikit.xctestplan"; sourceTree = "<group>"; };
+		ADE14EDE2F0E117300D0A41D /* game-catalogue-uikit.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "game-catalogue-uikit.xctestplan"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -120,6 +120,7 @@
 				ADC4FBCE2ECEB76D0040C6BB /* Frameworks */,
 				ADC4FBCF2ECEB76D0040C6BB /* Resources */,
 				AD9215D12ED2E16B00858EBD /* Embed Frameworks */,
+				ADEE77512F0E16AA00FF2997 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -222,6 +223,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		ADEE77512F0E16AA00FF2997 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		ADC4FBCD2ECEB76D0040C6BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -256,6 +278,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XDB22KM8KS;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "game-catalogue-uikit/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -289,6 +312,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XDB22KM8KS;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "game-catalogue-uikit/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -352,7 +376,7 @@
 				DEVELOPMENT_TEAM = XDB22KM8KS;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -416,7 +440,7 @@
 				DEVELOPMENT_TEAM = XDB22KM8KS;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

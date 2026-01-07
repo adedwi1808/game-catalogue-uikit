@@ -5,18 +5,18 @@
 //  Created by Ade Dwi Prayitno on 21/11/25.
 //
 
-
+// swiftlint:disable identifier_name
 enum Platform: String, Codable {
     case pc, mac, linux, web, android, ios, nintendo
     case playStation = "playstation"
     case xbox
     case unknown
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self = Platform(rawValue: (try? container.decode(String.self)) ?? "") ?? .unknown
     }
-    
+
     var assetName: String {
         switch self {
         case .pc: return "IconPC"
@@ -32,3 +32,4 @@ enum Platform: String, Codable {
         }
     }
 }
+// swiftlint:enable identifier_name

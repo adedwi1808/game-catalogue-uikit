@@ -5,18 +5,17 @@
 //  Created by Ade Dwi Prayitno on 23/11/25.
 //
 
-
 import Foundation
 import RealmSwift
 
 final class RealmManager: RealmManagerProtocol {
-    
+
     private let factory: RealmFactory
-    
+
     init(factory: RealmFactory = .main) {
         self.factory = factory
     }
-    
+
     private func getRealm() throws -> Realm {
         do {
             return try Realm(configuration: factory.configuration)
@@ -24,7 +23,7 @@ final class RealmManager: RealmManagerProtocol {
             throw DatabaseError.migrationError(message: error.localizedDescription)
         }
     }
-    
+
     func fetch<T: Object>(type: T.Type) async throws -> [T] {
         return try await Task { @MainActor in
             do {
@@ -36,7 +35,7 @@ final class RealmManager: RealmManagerProtocol {
             }
         }.value
     }
-    
+
     func fetch<T: Object>(type: T.Type, filter: String) async throws -> [T] {
         return try await Task { @MainActor in
             do {
@@ -48,7 +47,7 @@ final class RealmManager: RealmManagerProtocol {
             }
         }.value
     }
-    
+
     func save<T: Object>(object: T) async throws {
         try await Task { @MainActor in
             do {
@@ -64,7 +63,7 @@ final class RealmManager: RealmManagerProtocol {
             }
         }.value
     }
-    
+
     func save<T: Object>(objects: [T]) async throws {
         try await Task { @MainActor in
             do {
@@ -77,14 +76,14 @@ final class RealmManager: RealmManagerProtocol {
             }
         }.value
     }
-    
+
     func delete<T: Object>(object: T) async throws {
         try await Task { @MainActor in
             do {
                 let realm = try self.getRealm()
                 if let primaryKey = object.objectSchema.primaryKeyProperty?.name,
                    let id = object.value(forKey: primaryKey) {
-                    
+
                     if let objectToDelete = realm.object(ofType: T.self, forPrimaryKey: id) {
                         try realm.write {
                             realm.delete(objectToDelete)
@@ -95,13 +94,13 @@ final class RealmManager: RealmManagerProtocol {
                 } else {
                     throw DatabaseError.writeFailed(message: "Object does not have Primary Key")
                 }
-                
+
             } catch {
                 throw DatabaseError.writeFailed(message: error.localizedDescription)
             }
         }.value
     }
-    
+
     func deleteAll<T: Object>(type: T.Type) async throws {
         try await Task { @MainActor in
             do {

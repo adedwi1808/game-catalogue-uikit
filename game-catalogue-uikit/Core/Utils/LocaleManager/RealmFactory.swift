@@ -5,7 +5,6 @@
 //  Created by Ade Dwi Prayitno on 23/11/25.
 //
 
-
 import Foundation
 import RealmSwift
 internal import Realm
@@ -25,7 +24,7 @@ extension RealmFactory {
             return identifier
         }
     }
-    
+
     // MARK: - Schema Version
     var schemaVersion: UInt64 {
         switch self {
@@ -35,7 +34,7 @@ extension RealmFactory {
             return 1
         }
     }
-    
+
     // MARK: - Configuration
     var configuration: Realm.Configuration {
         switch self {
@@ -48,7 +47,7 @@ extension RealmFactory {
                 deleteRealmIfMigrationNeeded: true
             )
             return config
-            
+
         case .inMemory(let identifier):
             return Realm.Configuration(inMemoryIdentifier: identifier)
         }

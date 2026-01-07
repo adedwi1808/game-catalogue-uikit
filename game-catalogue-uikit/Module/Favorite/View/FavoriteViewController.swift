@@ -103,7 +103,7 @@ class FavoriteViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
@@ -129,22 +129,20 @@ class FavoriteViewController: UIViewController {
 
 extension FavoriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
-        -> Int
-    {
+        -> Int {
         presenter.games.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
-        -> UITableViewCell
-    {
+        -> UITableViewCell {
         let data: Game = presenter.games[indexPath.row]
         let cell =
             tableView.dequeueReusableCell(
                 withIdentifier: GameTableViewCell.name,
                 for: indexPath
-            ) as! GameTableViewCell
-        cell.configure(data: data)
-        return cell
+            ) as? GameTableViewCell
+        cell?.configure(data: data)
+        return cell ?? UITableViewCell()
     }
 }
 

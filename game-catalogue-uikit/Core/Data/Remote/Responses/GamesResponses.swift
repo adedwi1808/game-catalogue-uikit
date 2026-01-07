@@ -5,7 +5,6 @@
 //  Created by Ade Dwi Prayitno on 21/11/25.
 //
 
-
 import Foundation
 
 // MARK: - GamesResponse
@@ -22,7 +21,7 @@ struct GamesResponse: Codable {
     let description: String?
     let added: Int?
     let developers: [DevelopersResponse]?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case slug
@@ -43,7 +42,7 @@ struct GamesResponse: Codable {
 struct GenreResponse: Codable {
     let id: Int?
     let name, slug: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id, name, slug
     }
@@ -58,7 +57,7 @@ struct ParentPlatformResponse: Codable {
 struct PlatformResponse: Codable {
     let id: Int?
     let name, slug: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id, name, slug
     }
@@ -68,7 +67,7 @@ struct PlatformResponse: Codable {
 struct DevelopersResponse: Codable {
     let id: Int?
     let name: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id, name
     }

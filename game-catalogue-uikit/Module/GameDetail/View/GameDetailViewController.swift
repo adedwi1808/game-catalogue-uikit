@@ -71,7 +71,7 @@ final class GameDetailViewController: UIViewController {
                 equalTo: view.topAnchor,
                 constant: -120
             ),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
@@ -95,32 +95,32 @@ extension GameDetailViewController: UITableViewDataSource {
                 tableView.dequeueReusableCell(
                     withIdentifier: GameDetailHeaderTableViewCell.name,
                     for: indexPath
-                ) as! GameDetailHeaderTableViewCell
-            cell.configure(data: presenter.game)
-            return cell
+                ) as? GameDetailHeaderTableViewCell
+            cell?.configure(data: presenter.game)
+            return cell ?? UITableViewCell()
 
         case .rating:
             let cell =
                 tableView.dequeueReusableCell(
                     withIdentifier: GameDetailRatingTableViewCell.name,
                     for: indexPath
-                ) as! GameDetailRatingTableViewCell
-            cell.configure(
+                ) as? GameDetailRatingTableViewCell
+            cell?.configure(
                 data: presenter.game,
                 isFavorited: presenter.isFavorited
             ) { [weak self] in
                 self?.presenter.toggleFavorite()
             }
-            return cell
+            return cell ?? UITableViewCell()
 
         case .description:
             let cell =
                 tableView.dequeueReusableCell(
                     withIdentifier: GameDetailDescriptionTableViewCell.name,
                     for: indexPath
-                ) as! GameDetailDescriptionTableViewCell
-            cell.configure(data: presenter.game)
-            return cell
+                ) as? GameDetailDescriptionTableViewCell
+            cell?.configure(data: presenter.game)
+            return cell ?? UITableViewCell()
 
         default:
             return UITableViewCell()
@@ -148,7 +148,11 @@ extension GameDetailViewController: UITableViewDelegate {
 
 extension GameDetailViewController: GameDetailViewProtocol {
     func showLoading(_ isLoading: Bool) {
-        isLoading ? showSpinner() : hideSpinner()
+        if isLoading {
+            showSpinner()
+        } else {
+            hideSpinner()
+        }
     }
 
     func render(game: Game?, isFavorited: Bool) {

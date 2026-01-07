@@ -5,7 +5,6 @@
 //  Created by Ade Dwi Prayitno on 23/11/25.
 //
 
-
 import Foundation
 
 enum DatabaseError: Error, LocalizedError {

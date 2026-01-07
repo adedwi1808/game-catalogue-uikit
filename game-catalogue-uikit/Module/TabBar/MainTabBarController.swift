@@ -67,9 +67,9 @@ class MainTabBarController: UITabBarController {
             router: router
         )
 
-        let vc = FavoriteViewController(presenter: presenter)
+        let favoriteVC = FavoriteViewController(presenter: presenter)
 
-        let nav = UINavigationController(rootViewController: vc)
+        let nav = UINavigationController(rootViewController: favoriteVC)
         nav.tabBarItem = UITabBarItem(
             title: "Favorite",
             image: UIImage(systemName: "heart"),

@@ -92,7 +92,7 @@ class AboutViewController: UIViewController {
     private func setupView() {
         [
             imageView, nameLabelView, emailLabelView, nameTextField,
-            emailTextField,
+            emailTextField
         ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview($0)
@@ -100,15 +100,16 @@ class AboutViewController: UIViewController {
         setupConstraint()
     }
 
+    // swiftlint:disable function_body_length
     private func setupConstraint() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(
-                equalTo: self.view.topAnchor,
+                equalTo: view.topAnchor,
                 constant: UIScreen.screenHeight / 3
             ),
             imageView.heightAnchor.constraint(equalToConstant: 110),
             imageView.widthAnchor.constraint(equalToConstant: 110),
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
 
         NSLayoutConstraint.activate([
@@ -124,7 +125,7 @@ class AboutViewController: UIViewController {
             nameLabelView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
                 constant: -32
-            ),
+            )
         ])
 
         NSLayoutConstraint.activate([
@@ -142,7 +143,7 @@ class AboutViewController: UIViewController {
             emailLabelView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
                 constant: -32
-            ),
+            )
         ])
 
         NSLayoutConstraint.activate([
@@ -157,7 +158,7 @@ class AboutViewController: UIViewController {
             nameTextField.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
                 constant: -32
-            ),
+            )
         ])
 
         NSLayoutConstraint.activate([
@@ -172,10 +173,10 @@ class AboutViewController: UIViewController {
             emailTextField.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
                 constant: -32
-            ),
+            )
         ])
-
     }
+    // swiftlint:enable function_body_length
 
     @objc private func editButtonAction() {
         presenter.editButtonTapped(

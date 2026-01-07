@@ -9,11 +9,11 @@ import Combine
 import Foundation
 
 protocol GameRepositoryProtocol {
-    //Locale
+    // Locale
     func getGames(endPoint: NetworkFactory) -> AnyPublisher<[Game], Error>
     func getGameDetail(endPoint: NetworkFactory) -> AnyPublisher<Game, Error>
 
-    //Remote
+    // Remote
     func saveToFavorite(game: Game) -> AnyPublisher<Void, Error>
     func removeFromFavorite(game: Game) -> AnyPublisher<Void, Error>
     func checkIsFavorite(id: Int) -> AnyPublisher<Bool, Error>
@@ -79,7 +79,7 @@ extension GameRepository: GameRepositoryProtocol {
     func getLocaleGames() -> AnyPublisher<[Game], Error> {
         return self.locale
             .getLocaleGames()
-            .map { $0.map{ $0.toDomain()}}
+            .map { $0.map { $0.toDomain()}}
             .eraseToAnyPublisher()
     }
 }

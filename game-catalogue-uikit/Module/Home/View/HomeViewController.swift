@@ -48,10 +48,6 @@ class HomeViewController: UIViewController {
         presenter.loadInitial()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
     private func setupView() {
         setupSearchBar()
         setupTableView()
@@ -110,7 +106,7 @@ class HomeViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
@@ -155,10 +151,10 @@ extension HomeViewController: UITableViewDataSource {
             tableView.dequeueReusableCell(
                 withIdentifier: GameTableViewCell.name,
                 for: indexPath
-            ) as! GameTableViewCell
+            ) as? GameTableViewCell
 
-        cell.configure(data: presenter.games[indexPath.row])
-        return cell
+        cell?.configure(data: presenter.games[indexPath.row])
+        return cell ?? UITableViewCell()
     }
 }
 
@@ -169,7 +165,7 @@ extension HomeViewController: UITableViewDelegate {
     ) -> CGFloat {
         10
     }
-    
+
     func tableView(
         _ tableView: UITableView,
         heightForRowAt indexPath: IndexPath
@@ -200,26 +196,28 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: SkeletonTableViewDataSource {
     func numSections(in collectionSkeletonView: UITableView) -> Int { 1 }
+
     func collectionSkeletonView(
         _ skeletonView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int { 3 }
+
     func collectionSkeletonView(
         _ skeletonView: UITableView,
         cellIdentifierForRowAt indexPath: IndexPath
-    )
-        -> ReusableCellIdentifier
-    {
-        GameTableViewCell.name
+    ) -> ReusableCellIdentifier {
+        return GameTableViewCell.name
     }
 }
 
 extension HomeViewController: HomeViewProtocol {
 
     func onLoading(_ isLoading: Bool) {
-        isLoading
-            ? tableView.showAnimatedGradientSkeleton()
-            : tableView.hideSkeleton()
+        if isLoading {
+            tableView.showAnimatedGradientSkeleton()
+        } else {
+            tableView.hideSkeleton()
+        }
     }
 
     func onSuccess() {

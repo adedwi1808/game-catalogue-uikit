@@ -5,7 +5,6 @@
 //  Created by Ade Dwi Prayitno on 18/11/25.
 //
 
-
 import Foundation
 
 enum NetworkError: Error, LocalizedError {
@@ -14,7 +13,7 @@ enum NetworkError: Error, LocalizedError {
     case internetError(message: String)
     case decodingError(message: String)
     case unAuthorized
-    
+
     var localizedDescription: String {
         switch self {
         case .middlewareError(_, let message):
@@ -29,7 +28,7 @@ enum NetworkError: Error, LocalizedError {
             return message
         }
     }
-    
+
     var isUnAuthorized: Bool {
         switch self {
         case .middlewareError:

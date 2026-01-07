@@ -19,10 +19,9 @@ final class AboutViewModel {
         }
     }
     let imageURL: URL? = URL(string: "https://avatars.githubusercontent.com/u/56765011?v=4")
-    
+
     var isEditingProfile = false
 
-    
     init() {
         self.name = UserDefaults.name ?? "Ade Dwi Prayitno"
         self.email = UserDefaults.email ?? "adedwip1808@gmail.com"

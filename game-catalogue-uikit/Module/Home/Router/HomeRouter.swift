@@ -24,12 +24,12 @@ final class HomeRouter: HomeRouterProtocol {
             useCase: Injection().provideGameDetail()
         )
 
-        let vc = GameDetailViewController(
+        let gameVC = GameDetailViewController(
             presenter: presenter,
             game: game
         )
 
-        vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
+        gameVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(gameVC, animated: true)
     }
 }

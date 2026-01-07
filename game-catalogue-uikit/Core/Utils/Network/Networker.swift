@@ -5,7 +5,6 @@
 //  Created by Ade Dwi Prayitno on 18/11/25.
 //
 
-
 import UIKit
 
 final class Networker: NetworkerProtocol {
@@ -17,21 +16,21 @@ final class Networker: NetworkerProtocol {
         } catch {
             throw NetworkError.internetError(message: "Connection Error")
         }
-        
+
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.middlewareError(code: 500, message: "Connection Error")
         }
-        
+
 #if DEBUG
-        let dataString = String(decoding: data, as: UTF8.self)
+        let dataString = String(bytes: data, encoding: .utf8) ?? "<non-utf8 data>"
         print("Endpoint: \(endPoint.path)")
-        print("Request: \(endPoint.bodyParam ?? ["":""])")
-        print("Response : \(dataString)")
+        print("Request: \(endPoint.bodyParam ?? [:])")
+        print("Response: \(dataString)")
 #endif
-        
+
         guard 200..<300 ~= httpResponse.statusCode else {
             let res  = try? JSONDecoder().decode(NetworkHandle.self, from: data)
-            
+
             switch httpResponse.statusCode {
             case 400:
                 throw NetworkError.badRequest(message: res?.error ?? "Something went wrong")
@@ -41,7 +40,7 @@ final class Networker: NetworkerProtocol {
                 throw NetworkError.middlewareError(code: 500, message: res?.error ?? "Something went wrong")
             }
         }
-        
+
         do {
             let decoder = JSONDecoder()
             let dataNew = try decoder.decode(type, from: data)
@@ -62,12 +61,12 @@ extension Networker {
                 parameters: endPoint.bodyParam ?? [:],
                 imageDataKey: endPoint.data
             )
-            
+
             let (data, response) = try await URLSession.shared.upload(
                 for: endPoint.urlRequestMultiPart,
                 from: body
             )
-            
+
             self.data = data
             self.response = response
         } else {

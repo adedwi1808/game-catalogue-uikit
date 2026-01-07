@@ -5,7 +5,6 @@
 //  Created by Ade Dwi Prayitno on 21/11/25.
 //
 
-
 struct Game {
     let id: Int
     let name: String

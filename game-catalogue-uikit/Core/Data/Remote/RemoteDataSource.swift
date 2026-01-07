@@ -21,8 +21,7 @@ final class RemoteDataSource: NSObject {
         self.networker = networker
     }
 
-    static let sharedInstance: (NetworkerProtocol) -> RemoteDataSource = {
-        networker in
+    static let sharedInstance: (NetworkerProtocol) -> RemoteDataSource = { networker in
         return RemoteDataSource(networker: networker)
     }
 
@@ -46,7 +45,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
             }
         }.eraseToAnyPublisher()
     }
-    
+
     func getGames(endPoint: NetworkFactory) -> AnyPublisher<PaginationResponseModel<GamesResponse>, Error> {
         return Future { completion in
             Task {
@@ -66,4 +65,3 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     }
 
 }
-

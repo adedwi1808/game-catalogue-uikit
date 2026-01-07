@@ -24,8 +24,7 @@ final class LocaleDataSource: NSObject {
         self.realm = realm
     }
 
-    static let sharedInstance: (RealmManagerProtocol?) -> LocaleDataSource = {
-        realmDatabase in
+    static let sharedInstance: (RealmManagerProtocol?) -> LocaleDataSource = { realmDatabase in
         return LocaleDataSource(realm: realmDatabase)
     }
 

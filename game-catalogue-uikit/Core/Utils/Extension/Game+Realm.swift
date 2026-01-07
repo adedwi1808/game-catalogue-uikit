@@ -20,24 +20,24 @@ extension Game {
         entity.desc = self.description
         entity.added = self.added
         entity.developers = self.developers
-        
+
         let genreEntities = self.genres.map { genre in
-            let g = GenreEntity()
-            g.id = genre.id
-            g.name = genre.name
-            return g
+            let genre = GenreEntity()
+            genre.id = genre.id
+            genre.name = genre.name
+            return genre
         }
         entity.genres.append(objectsIn: genreEntities)
-        
-        let platformEntities = self.platforms.map { plat in
-            let p = PlatformEntity()
-            p.id = plat.id
-            p.name = plat.name
-            p.slug = plat.slug
-            return p
+
+        let platformEntities = self.platforms.map { platform in
+            let platform = PlatformEntity()
+            platform.id = platform.id
+            platform.name = platform.name
+            platform.slug = platform.slug
+            return platform
         }
         entity.platforms.append(objectsIn: platformEntities)
-        
+
         return entity
     }
 }
