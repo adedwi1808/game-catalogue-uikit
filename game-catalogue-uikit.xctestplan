@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "D1E79808-D06B-4B1C-AA11-5203B9349DC5",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:game-catalogue-uikit.xcodeproj",
+      "identifier" : "ADC4FBD02ECEB76D0040C6BB",
+      "name" : "game-catalogue-uikit"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:game-catalogue-uikit.xcodeproj",
+        "identifier" : "ADE14EC32F0E0ED700D0A41D",
+        "name" : "GameCatalogueUIKitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

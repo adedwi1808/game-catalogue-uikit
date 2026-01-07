@@ -1,0 +1,20 @@
+disabled_rules:
+  - todo
+  - unused_closure_parameter
+
+opt_in_rules:
+  - empty_count
+  - empty_string
+
+included:
+  - game-catalogue-uikit
+
+excluded: # Folder yang diabaikan
+  - GameCatalogueUIKitTests
+  - DerivedData
+
+line_length: 
+  warning: 140
+  error: 200
+  ignores_function_declarations: true
+  ignores_comments: true
