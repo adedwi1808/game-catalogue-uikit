@@ -54,7 +54,7 @@ extension NetworkFactory {
     }
 
     var apiKey: URLQueryItem {
-        URLQueryItem(name: "key", value: "412b96c6d0fc45a29aceaf2bdb16d6af")
+        URLQueryItem(name: "key", value: "API_KEY")
     }
 
     // MARK: URL LINK

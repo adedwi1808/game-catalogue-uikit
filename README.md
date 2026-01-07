@@ -73,8 +73,9 @@ GET /api/games/{{GAME_ID}}
 **Client:**
 
 * **UI:** UIKit
-* **Arsitektur:** MVVM (Model-View-ViewModel)
+* **Arsitektur:** VIPER
 * **Networking:** URLSession + Async/Await
+* **Reactive Programming:** Combine
 * **Image Loading:** Kingfisher
 * **Local Database** Realm
 * **Skeleton** SkeletonView
