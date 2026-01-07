@@ -8,65 +8,117 @@
 import Foundation
 import Combine
 
+protocol HomeViewProtocol: AnyObject {
+    func onSuccess()
+    func onFailed(message: String)
+    func onLoading(_ isLoading: Bool)
+}
+
 @MainActor
-final class HomePresenter: ObservableObject {
+final class HomePresenter {
+
+    weak var delegate: HomeViewProtocol?
+
     private let router = HomeRouter()
     private let homeUseCase: HomeUseCase
 
-    @Published var query: String = ""
-    @Published var page: Int = 1
-    private var pageSize: Int = 10
+    private let querySubject = CurrentValueSubject<String, Never>("")
+    private var cancellables = Set<AnyCancellable>()
 
-    @Published var games: [Game] = []
-    @Published var isLoading: Bool = false
-    @Published var hasMoreData: Bool = true
-    @Published var errorMessage: PassthroughSubject<String, Never> = PassthroughSubject()
+    private(set) var games: [Game] = []
 
-    private var cancellables: Set<AnyCancellable> = []
+    private var page = 1
+    private let pageSize = 10
+    private var isLoading = false
+    private var hasMoreData = true
 
     init(homeUseCase: HomeUseCase) {
         self.homeUseCase = homeUseCase
+        bind()
+    }
+
+    private func bind() {
+        querySubject
+            .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+            .removeDuplicates()
+            .handleEvents(receiveRequest:  { [weak self] _ in
+                self?.reset()
+                self?.delegate?.onLoading(true)
+            })
+            .flatMap { [weak self] query -> AnyPublisher<[Game], Error> in
+                guard let self else { return Empty().eraseToAnyPublisher() }
+
+                return self.homeUseCase.getGames(
+                    endPoint: .getGames(
+                        search: query,
+                        page: self.page,
+                        pageSize: self.pageSize
+                    )
+                )
+            }
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    self?.delegate?.onLoading(false)
+                    if case let .failure(error) = completion {
+                        self?.delegate?.onFailed(message: error.localizedDescription)
+                    }
+                },
+                receiveValue: { [weak self] games in
+                    guard let self else { return }
+                    self.games = games
+                    self.hasMoreData = games.count == self.pageSize
+                    self.delegate?.onSuccess()
+                }
+            )
+            .store(in: &cancellables)
+    }
+
+    private func reset() {
+        page = 1
+        games.removeAll()
+        hasMoreData = true
+    }
+
+    func loadInitial() {
+        querySubject.send("")
+    }
+
+    func refresh() {
+        querySubject.send(querySubject.value)
+    }
+
+    func searchQueryChanged(_ query: String) {
+        querySubject.send(query)
     }
 
     func loadNextPage() {
         guard !isLoading, hasMoreData else { return }
-        page += 1
-        getGames()
-    }
 
-    func searchGames(query: String) {
-        self.query = query
-        self.page = 1
-        self.games = []
-        self.hasMoreData = true
-        getGames()
-    }
-
-    func getGames() {
         isLoading = true
+        page += 1
 
         homeUseCase.getGames(
             endPoint: .getGames(
-                search: query,
+                search: querySubject.value,
                 page: page,
                 pageSize: pageSize
             )
         )
-        .receive(on: RunLoop.main)
-        .sink { result in
-            switch result {
-            case .finished:
-                self.isLoading = false
-            case .failure(let error):
-                self.errorMessage.send(error.localizedDescription)
+        .sink(
+            receiveCompletion: { [weak self] _ in
+                self?.isLoading = false
+            },
+            receiveValue: { [weak self] newGames in
+                guard let self else { return }
+                self.games.append(contentsOf: newGames)
+                self.hasMoreData = newGames.count == self.pageSize
+                self.delegate?.onSuccess()
             }
-        } receiveValue: { [weak self] newGames in
-            guard let self else { return }
-            if newGames.count < pageSize {
-                hasMoreData = false
-            }
+        )
+        .store(in: &cancellables)
+    }
 
-            games = page > 1 ? games + newGames : newGames
-        }.store(in: &cancellables)
+    func navigateToDetail(index: Int) {
+        router.makeDetailPage(for: games[index])
     }
 }

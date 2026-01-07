@@ -27,10 +27,9 @@ class MainTabBarController: UITabBarController {
     }
     
     private func createHomeNavigation() -> UINavigationController {
-        let services: HomeServicesProtocol = HomeServices(networker: networker, realm: realm)
-        let homeViewModel: HomeViewModel = HomeViewModel(services: services)
-        let homeViewController: HomeViewController = HomeViewController(viewModel: homeViewModel)
-        
+        let presenter = HomePresenter(homeUseCase: Injection().provideHome())
+        let homeViewController: HomeViewController = HomeViewController(presenter: presenter)
+
         let nav = UINavigationController(rootViewController: homeViewController)
         nav.tabBarItem = UITabBarItem(
             title: "Home",
