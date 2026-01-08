@@ -11,6 +11,7 @@ protocol FavoriteRouterProtocol: AnyObject {
     func navigateToDetail(from view: UIViewController, game: Game)
 }
 
+@MainActor
 final class FavoriteRouter: FavoriteRouterProtocol {
 
     func navigateToDetail(from view: UIViewController, game: Game) {

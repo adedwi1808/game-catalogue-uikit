@@ -7,6 +7,7 @@
 
 import UIKit
 
+@MainActor
 final class GameDetailViewController: UIViewController {
 
     enum PageSection: Int, CaseIterable {

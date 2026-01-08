@@ -11,6 +11,7 @@ protocol HomeRouterProtocol {
     func makeDetailPage(for game: Game)
 }
 
+@MainActor
 final class HomeRouter: HomeRouterProtocol {
 
     weak var navigationController: UINavigationController?

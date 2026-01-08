@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 final class Injection: NSObject {
 
     private func provideRepository() -> GameRepositoryProtocol {
