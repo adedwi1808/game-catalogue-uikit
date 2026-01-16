@@ -2,6 +2,8 @@
 
 ## Build Status
 
+[![Codemagic build status](https://api.codemagic.io/apps/696ac6f098816609107559af/ios-workflow/status_badge)](https://codemagic.io/apps/696ac6f098816609107559af/ios-workflow/latest_build)
+
 ![Codemagic Build Status](Docs/codemagic_build_status.png)
 
 > **Note**: Build successfully passed on Codemagic (iOS Workflow).
