@@ -1,6 +1,69 @@
 {
-  "originHash" : "8349be87c494f76d7932718f7b1e38319039212e50392d4f18b8e549dfe6551b",
+  "originHash" : "b37d72897eba21c18f89c42f51b71d88c600b1d4a2740dad1483e334738b52c0",
   "pins" : [
+    {
+      "identity" : "game-catalogue-about-package",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adedwi1808/game-catalogue-About-package.git",
+      "state" : {
+        "revision" : "57acae23f281cd3603478a1478cb73ddb9772ab3",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "game-catalogue-common-package",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adedwi1808/game-catalogue-Common-package.git",
+      "state" : {
+        "revision" : "dbbdfde93561e9ba12d2151017aafde76759da16",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "game-catalogue-components-package",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adedwi1808/game-catalogue-Components-package.git",
+      "state" : {
+        "revision" : "6fd38edfd583fea3496181d22d6347ebfa3be46b",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "game-catalogue-core-package",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adedwi1808/game-catalogue-Core-package.git",
+      "state" : {
+        "revision" : "024c0d1da450427d68b6a5fdccbbb848b022b982",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "game-catalogue-favorite-package",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adedwi1808/game-catalogue-Favorite-package.git",
+      "state" : {
+        "revision" : "c7486681682b1358598828fd76de51fe01c55c07",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "game-catalogue-gamedetail-package",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adedwi1808/game-catalogue-GameDetail-package.git",
+      "state" : {
+        "revision" : "3bda72506c68ce59c412d3c7d2905f9bfa42ad2d",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "game-catalogue-home-package",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adedwi1808/game-catalogue-Home-package.git",
+      "state" : {
+        "revision" : "0af34cc05c70e99fb05e6685afeeca55970b9f0b",
+        "version" : "1.0.3"
+      }
+    },
     {
       "identity" : "kingfisher",
       "kind" : "remoteSourceControl",
@@ -24,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-swift.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "c22f9303d446fc3c044e4c151ed19597464b6bd7"
+        "revision" : "1c105d34f25af7851c5a3ff146be006de247a6b4",
+        "version" : "10.54.6"
       }
     },
     {

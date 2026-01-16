@@ -1,1 +1,5 @@
 *.xcuserstate
+
+# Config
+game-catalogue-uikit/game-catalogue-uikit/Application/Config/Debug.xcconfig
+game-catalogue-uikit/game-catalogue-uikit/Application/Config/Release.xcconfig
