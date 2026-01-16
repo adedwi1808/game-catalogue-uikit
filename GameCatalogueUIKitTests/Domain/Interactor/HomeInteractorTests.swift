@@ -9,6 +9,7 @@ import Combine
 import XCTest
 
 @testable import game_catalogue_uikit
+import Core
 
 final class HomeInteractorTests: XCTestCase {
 

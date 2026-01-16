@@ -9,6 +9,7 @@ import Combine
 import Foundation
 
 @testable import game_catalogue_uikit
+import Core
 
 class MockHomeUseCase: HomeUseCase {
     var result: Result<[Game], Error> = .success([])

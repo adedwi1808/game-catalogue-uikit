@@ -6,6 +6,7 @@
 //
 
 @testable import game_catalogue_uikit
+import Core
 
 struct MockData {
     static let sampleGame = Game(

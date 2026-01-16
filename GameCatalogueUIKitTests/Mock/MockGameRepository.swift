@@ -9,6 +9,7 @@ import Combine
 import Foundation
 
 @testable import game_catalogue_uikit
+import Core
 
 class MockGameRepository: GameRepositoryProtocol {
     var gamesResult: Result<[Game], Error> = .success([])
