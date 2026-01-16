@@ -5,6 +5,19 @@ workflows:
     environment:
       xcode: latest
       cocoapods: default
+    triggering:
+      events:
+        - push
+        - tag
+        - pull_request
+      branch_patterns:
+        - pattern: main
+          include: true
+          source: true
+    cache:
+      cache_paths:
+        - ~/Library/Caches/org.swift.swiftpm
+        - ~/Library/Developer/Xcode/DerivedData
     scripts:
       - name: Run Tests
         script: |
