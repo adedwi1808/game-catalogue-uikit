@@ -78,8 +78,8 @@ GET /api/games/{{GAME_ID}}
 
 - **UI:** UIKit (Programmatic & XIB)
 - **Arsitektur:** VIPER + Modularization
-  - **Features:** `Home`, `Favorite`, `GameDetail`, `About`
-  - **Core:** `Core`, `Common`, `Components`
+  - **Features:** [`Home`](https://github.com/adedwi1808/game-catalogue-Home-package), [`Favorite`](https://github.com/adedwi1808/game-catalogue-Favorite-package), [`GameDetail`](https://github.com/adedwi1808/game-catalogue-GameDetail-package), [`About`](https://github.com/adedwi1808/game-catalogue-About-package)
+  - **Core:** [`Core`](https://github.com/adedwi1808/game-catalogue-Core-package), [`Common`](https://github.com/adedwi1808/game-catalogue-Common-package), [`Components`](https://github.com/adedwi1808/game-catalogue-Components-package)
 - **Networking:** URLSession + Async/Await
 - **Reactive Programming:** Combine
 - **Image Loading:** Kingfisher
