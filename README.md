@@ -1,5 +1,11 @@
 # Game Catalogue App
 
+## Build Status
+
+![Codemagic Build Status](Docs/codemagic_build_status.png)
+
+> **Note**: Build successfully passed on Codemagic (iOS Workflow).
+
 ## Authors
 
 - [@adedwi1808](https://www.github.com/adedwi1808)
