@@ -2,7 +2,7 @@
 
 ## Build Status
 
-[![Codemagic build status](https://api.codemagic.io/apps/696ac6f098816609107559af/ios-workflow/status_badge)](https://codemagic.io/apps/696ac6f098816609107559af/ios-workflow/latest_build)
+[![Codemagic build status](https://api.codemagic.io/apps/696a7c108d15239db95cbe9a/ios-workflow/status_badge)](https://codemagic.io/apps/696a7c108d15239db95cbe9a/ios-workflow/latest_build)
 
 ![Codemagic Build Status](Docs/codemagic_build_status.png)
 
