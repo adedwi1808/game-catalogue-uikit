@@ -607,7 +607,7 @@
 			repositoryURL = "https://github.com/adedwi1808/game-catalogue-Home-package.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.5;
+				minimumVersion = 1.0.7;
 			};
 		};
 		BC7288992F1AAFFC0098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-GameDetail-package" */ = {
