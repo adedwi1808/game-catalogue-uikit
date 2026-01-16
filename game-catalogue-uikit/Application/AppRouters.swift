@@ -16,12 +16,12 @@ final class AppHomeRouter: HomeRouterProtocol {
         let presenter = GameDetailPresenter(
             useCase: Injection().provideGameDetail()
         )
-        
+
         let gameVC = GameDetailViewController(
             presenter: presenter,
             game: game
         )
-        
+
         gameVC.hidesBottomBarWhenPushed = true
         view.navigationController?.pushViewController(gameVC, animated: true)
     }
@@ -29,17 +29,17 @@ final class AppHomeRouter: HomeRouterProtocol {
 
 @MainActor
 final class AppFavoriteRouter: FavoriteRouterProtocol {
-    
+
     func navigateToDetail(from view: UIViewController, game: Game) {
         let presenter = GameDetailPresenter(
             useCase: Injection().provideGameDetail()
         )
-        
+
         let detailVC = GameDetailViewController(
             presenter: presenter,
             game: game
         )
-        
+
         detailVC.hidesBottomBarWhenPushed = true
         view.navigationController?.pushViewController(
             detailVC,

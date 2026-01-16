@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/adedwi1808/game-catalogue-Home-package.git",
       "state" : {
-        "revision" : "e6da604b3e495c9987429bb95286cc77e1568ce4",
-        "version" : "1.0.5"
+        "revision" : "8fa68295ba6c999ec2dba9a837f4958b86a6d504",
+        "version" : "1.0.7"
       }
     },
     {
