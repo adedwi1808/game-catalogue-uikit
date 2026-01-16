@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import XCTest
+import Home
 
 @testable import game_catalogue_uikit
 
