@@ -1,0 +1,29 @@
+workflows:
+  ios-workflow:
+    name: iOS Workflow
+    max_build_duration: 120
+    environment:
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Run Tests
+        script: |
+          xcodebuild test \
+            -project game-catalogue-uikit.xcodeproj \
+            -scheme game-catalogue-uikit \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -clean \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+      - name: Build App
+        script: |
+          xcodebuild build \
+             -project game-catalogue-uikit.xcodeproj \
+             -scheme game-catalogue-uikit \
+             -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+             CODE_SIGN_IDENTITY="" \
+             CODE_SIGNING_REQUIRED=NO \
+             CODE_SIGNING_ALLOWED=NO
+    artifacts:
+      - ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
