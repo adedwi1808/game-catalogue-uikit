@@ -1,11 +1,8 @@
-//
-//  MainTabBarController.swift
-//  game-catalogue-uikit
-//
-//  Created by Ade Dwi Prayitno on 20/11/25.
-//
-
 import UIKit
+import Home
+import About
+import Favorite
+import Core
 
 class MainTabBarController: UITabBarController {
 
@@ -32,7 +29,7 @@ class MainTabBarController: UITabBarController {
 
         let nav = UINavigationController(rootViewController: homeVC)
 
-        let router = HomeRouter(navigationController: nav)
+        let router = AppHomeRouter(navigationController: nav)
         presenter.attachRouter(router)
 
         nav.tabBarItem = UITabBarItem(
@@ -61,7 +58,7 @@ class MainTabBarController: UITabBarController {
     }
 
     private func createFavoriteNavigation() -> UINavigationController {
-        let router = FavoriteRouter()
+        let router = AppFavoriteRouter()
         let presenter = FavoritePresenter(
             useCase: Injection().provideFavorite(),
             router: router

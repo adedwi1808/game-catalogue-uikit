@@ -7,10 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AD2262782ED015C900DD53BD /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AD2262772ED015C900DD53BD /* Kingfisher */; };
-		AD22627B2ED0160000DD53BD /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = AD22627A2ED0160000DD53BD /* SkeletonView */; };
-		AD9215CF2ED2E0F300858EBD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AD9215CE2ED2E0F300858EBD /* RealmSwift */; };
-		AD9215D02ED2E16B00858EBD /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = AD9215CE2ED2E0F300858EBD /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		BC02E8A62F1AAEF5005E8E32 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = BC02E8A52F1AAEF5005E8E32 /* Core */; };
+		BC02E8A92F1AAF1A005E8E32 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = BC02E8A82F1AAF1A005E8E32 /* Common */; };
+		BC7288952F1AAFCB0098CEE1 /* Components in Frameworks */ = {isa = PBXBuildFile; productRef = BC7288942F1AAFCB0098CEE1 /* Components */; };
+		BC7288982F1AAFEC0098CEE1 /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = BC7288972F1AAFEC0098CEE1 /* Home */; };
+		BC72889B2F1AAFFC0098CEE1 /* GameDetail in Frameworks */ = {isa = PBXBuildFile; productRef = BC72889A2F1AAFFC0098CEE1 /* GameDetail */; };
+		BC72889E2F1AB0220098CEE1 /* About in Frameworks */ = {isa = PBXBuildFile; productRef = BC72889D2F1AB0220098CEE1 /* About */; };
+		BC7288A12F1AB0420098CEE1 /* Favorite in Frameworks */ = {isa = PBXBuildFile; productRef = BC7288A02F1AB0420098CEE1 /* Favorite */; };
+		BCD323DD2F1A575A00CD40F9 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = BCD323DC2F1A575A00CD40F9 /* Common */; };
+		BCD323E02F1A576B00CD40F9 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = BCD323DF2F1A576B00CD40F9 /* Core */; };
+		BCD323E32F1A57D800CD40F9 /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = BCD323E22F1A57D800CD40F9 /* Home */; };
+		BCD324612F1A5E9600CD40F9 /* Components in Frameworks */ = {isa = PBXBuildFile; productRef = BCD324602F1A5E9600CD40F9 /* Components */; };
+		BCD324642F1A5EB800CD40F9 /* Components in Frameworks */ = {isa = PBXBuildFile; productRef = BCD324632F1A5EB800CD40F9 /* Components */; };
+		BCDC6CC82F1A6343003BBA8E /* GameDetail in Frameworks */ = {isa = PBXBuildFile; productRef = BCDC6CC72F1A6343003BBA8E /* GameDetail */; };
+		BCDC6CCB2F1A652A003BBA8E /* Favorite in Frameworks */ = {isa = PBXBuildFile; productRef = BCDC6CCA2F1A652A003BBA8E /* Favorite */; };
+		BCDC6CCE2F1A66C2003BBA8E /* About in Frameworks */ = {isa = PBXBuildFile; productRef = BCDC6CCD2F1A66C2003BBA8E /* About */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +41,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AD9215D02ED2E16B00858EBD /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,9 +84,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD9215CF2ED2E0F300858EBD /* RealmSwift in Frameworks */,
-				AD22627B2ED0160000DD53BD /* SkeletonView in Frameworks */,
-				AD2262782ED015C900DD53BD /* Kingfisher in Frameworks */,
+				BC72889E2F1AB0220098CEE1 /* About in Frameworks */,
+				BCDC6CCE2F1A66C2003BBA8E /* About in Frameworks */,
+				BCD324642F1A5EB800CD40F9 /* Components in Frameworks */,
+				BCDC6CCB2F1A652A003BBA8E /* Favorite in Frameworks */,
+				BCD323E02F1A576B00CD40F9 /* Core in Frameworks */,
+				BCDC6CC82F1A6343003BBA8E /* GameDetail in Frameworks */,
+				BC72889B2F1AAFFC0098CEE1 /* GameDetail in Frameworks */,
+				BC7288982F1AAFEC0098CEE1 /* Home in Frameworks */,
+				BC02E8A92F1AAF1A005E8E32 /* Common in Frameworks */,
+				BC02E8A62F1AAEF5005E8E32 /* Core in Frameworks */,
+				BC7288952F1AAFCB0098CEE1 /* Components in Frameworks */,
+				BCD324612F1A5E9600CD40F9 /* Components in Frameworks */,
+				BCD323DD2F1A575A00CD40F9 /* Common in Frameworks */,
+				BCD323E32F1A57D800CD40F9 /* Home in Frameworks */,
+				BC7288A12F1AB0420098CEE1 /* Favorite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,9 +153,21 @@
 			);
 			name = "game-catalogue-uikit";
 			packageProductDependencies = (
-				AD2262772ED015C900DD53BD /* Kingfisher */,
-				AD22627A2ED0160000DD53BD /* SkeletonView */,
-				AD9215CE2ED2E0F300858EBD /* RealmSwift */,
+				BCD323DC2F1A575A00CD40F9 /* Common */,
+				BCD323DF2F1A576B00CD40F9 /* Core */,
+				BCD323E22F1A57D800CD40F9 /* Home */,
+				BCD324602F1A5E9600CD40F9 /* Components */,
+				BCD324632F1A5EB800CD40F9 /* Components */,
+				BCDC6CC72F1A6343003BBA8E /* GameDetail */,
+				BCDC6CCA2F1A652A003BBA8E /* Favorite */,
+				BCDC6CCD2F1A66C2003BBA8E /* About */,
+				BC02E8A52F1AAEF5005E8E32 /* Core */,
+				BC02E8A82F1AAF1A005E8E32 /* Common */,
+				BC7288942F1AAFCB0098CEE1 /* Components */,
+				BC7288972F1AAFEC0098CEE1 /* Home */,
+				BC72889A2F1AAFFC0098CEE1 /* GameDetail */,
+				BC72889D2F1AB0220098CEE1 /* About */,
+				BC7288A02F1AB0420098CEE1 /* Favorite */,
 			);
 			productName = "game-catalogue-uikit";
 			productReference = ADC4FBD12ECEB76D0040C6BB /* game-catalogue-uikit.app */;
@@ -191,9 +225,13 @@
 			mainGroup = ADC4FBC82ECEB76D0040C6BB;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				AD2262762ED015C900DD53BD /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				AD2262792ED0160000DD53BD /* XCRemoteSwiftPackageReference "SkeletonView" */,
-				AD9215CD2ED2E0F300858EBD /* XCRemoteSwiftPackageReference "realm-swift" */,
+				BC02E8A42F1AAEF5005E8E32 /* XCRemoteSwiftPackageReference "game-catalogue-Core-package" */,
+				BC02E8A72F1AAF1A005E8E32 /* XCRemoteSwiftPackageReference "game-catalogue-Common-package" */,
+				BC7288932F1AAFCB0098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-Components-package" */,
+				BC7288962F1AAFEC0098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-Home-package" */,
+				BC7288992F1AAFFC0098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-GameDetail-package" */,
+				BC72889C2F1AB0220098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-About-package" */,
+				BC72889F2F1AB0420098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-Favorite-package" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ADC4FBD22ECEB76D0040C6BB /* Products */;
@@ -340,6 +378,8 @@
 		};
 		ADC4FBE72ECEB76E0040C6BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = ADC4FBD32ECEB76D0040C6BB /* game-catalogue-uikit */;
+			baseConfigurationReferenceRelativePath = Application/Config/Debug.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -404,6 +444,8 @@
 		};
 		ADC4FBE82ECEB76E0040C6BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = ADC4FBD32ECEB76D0040C6BB /* game-catalogue-uikit */;
+			baseConfigurationReferenceRelativePath = Application/Config/Release.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -536,47 +578,131 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		AD2262762ED015C900DD53BD /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		BC02E8A42F1AAEF5005E8E32 /* XCRemoteSwiftPackageReference "game-catalogue-Core-package" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			repositoryURL = "https://github.com/adedwi1808/game-catalogue-Core-package.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 8.6.2;
+				minimumVersion = 1.0.3;
 			};
 		};
-		AD2262792ED0160000DD53BD /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+		BC02E8A72F1AAF1A005E8E32 /* XCRemoteSwiftPackageReference "game-catalogue-Common-package" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			repositoryURL = "https://github.com/adedwi1808/game-catalogue-Common-package";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.31.0;
+				minimumVersion = 1.0.3;
 			};
 		};
-		AD9215CD2ED2E0F300858EBD /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		BC7288932F1AAFCB0098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-Components-package" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
+			repositoryURL = "https://github.com/adedwi1808/game-catalogue-Components-package.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+		BC7288962F1AAFEC0098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-Home-package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adedwi1808/game-catalogue-Home-package.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+		BC7288992F1AAFFC0098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-GameDetail-package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adedwi1808/game-catalogue-GameDetail-package.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+		BC72889C2F1AB0220098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-About-package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adedwi1808/game-catalogue-About-package.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+		BC72889F2F1AB0420098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-Favorite-package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adedwi1808/game-catalogue-Favorite-package.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AD2262772ED015C900DD53BD /* Kingfisher */ = {
+		BC02E8A52F1AAEF5005E8E32 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AD2262762ED015C900DD53BD /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
+			package = BC02E8A42F1AAEF5005E8E32 /* XCRemoteSwiftPackageReference "game-catalogue-Core-package" */;
+			productName = Core;
 		};
-		AD22627A2ED0160000DD53BD /* SkeletonView */ = {
+		BC02E8A82F1AAF1A005E8E32 /* Common */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AD2262792ED0160000DD53BD /* XCRemoteSwiftPackageReference "SkeletonView" */;
-			productName = SkeletonView;
+			package = BC02E8A72F1AAF1A005E8E32 /* XCRemoteSwiftPackageReference "game-catalogue-Common-package" */;
+			productName = Common;
 		};
-		AD9215CE2ED2E0F300858EBD /* RealmSwift */ = {
+		BC7288942F1AAFCB0098CEE1 /* Components */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AD9215CD2ED2E0F300858EBD /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
+			package = BC7288932F1AAFCB0098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-Components-package" */;
+			productName = Components;
+		};
+		BC7288972F1AAFEC0098CEE1 /* Home */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC7288962F1AAFEC0098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-Home-package" */;
+			productName = Home;
+		};
+		BC72889A2F1AAFFC0098CEE1 /* GameDetail */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC7288992F1AAFFC0098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-GameDetail-package" */;
+			productName = GameDetail;
+		};
+		BC72889D2F1AB0220098CEE1 /* About */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC72889C2F1AB0220098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-About-package" */;
+			productName = About;
+		};
+		BC7288A02F1AB0420098CEE1 /* Favorite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC72889F2F1AB0420098CEE1 /* XCRemoteSwiftPackageReference "game-catalogue-Favorite-package" */;
+			productName = Favorite;
+		};
+		BCD323DC2F1A575A00CD40F9 /* Common */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		BCD323DF2F1A576B00CD40F9 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		BCD323E22F1A57D800CD40F9 /* Home */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Home;
+		};
+		BCD324602F1A5E9600CD40F9 /* Components */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Components;
+		};
+		BCD324632F1A5EB800CD40F9 /* Components */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Components;
+		};
+		BCDC6CC72F1A6343003BBA8E /* GameDetail */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GameDetail;
+		};
+		BCDC6CCA2F1A652A003BBA8E /* Favorite */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Favorite;
+		};
+		BCDC6CCD2F1A66C2003BBA8E /* About */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = About;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
