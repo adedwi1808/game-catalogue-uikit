@@ -11,6 +11,7 @@ import XCTest
 @testable import game_catalogue_uikit
 import Core
 
+@MainActor
 final class HomeInteractorTests: XCTestCase {
 
     var sut: HomeInteractor!
